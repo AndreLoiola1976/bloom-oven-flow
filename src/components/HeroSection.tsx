@@ -4,21 +4,22 @@ import { getWhatsAppUrl } from "@/lib/whatsapp";
 const HeroSection = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Warm gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted to-secondary/20" />
+      {/* Warm layered background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-dough to-golden/15" />
       
-      {/* Subtle decorative circles */}
-      <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-secondary/10 blur-3xl" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
+      {/* Warm decorative orbs */}
+      <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-golden/15 blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-frosting/20 blur-3xl" />
+      <div className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-rose/8 blur-3xl" />
 
       <div className="relative z-10 container mx-auto px-4 text-center max-w-3xl">
-        <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-          <span className="text-sm font-medium text-primary">
+        <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-frosting border border-rose/20">
+          <span className="text-sm font-medium text-chocolate">
             Gluten-Free · Dairy-Free · Refined Sugar-Free
           </span>
         </div>
 
-        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight text-foreground mb-6">
+        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight mb-6">
           Baked with Heart.
           <br />
           <span className="text-primary italic">Made to Bloom.</span>
@@ -34,7 +35,7 @@ const HeroSection = () => {
           href={getWhatsAppUrl("Hi! I'd like to place an order 🌸")}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-whatsapp hover:bg-whatsapp/90 text-whatsapp-foreground px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+          className="inline-flex items-center gap-3 bg-whatsapp hover:bg-whatsapp/90 text-whatsapp-foreground px-8 py-4 rounded-full text-lg font-semibold shadow-lg shadow-whatsapp/20 hover:shadow-xl hover:shadow-whatsapp/25 transition-all duration-300 hover:-translate-y-0.5"
         >
           <MessageCircle size={22} />
           Order on WhatsApp

@@ -1,9 +1,9 @@
 const BrandStory = () => {
   return (
-    <section id="about" className="py-20 md:py-28 bg-muted/30">
+    <section id="about" className="py-20 md:py-28 bg-gradient-to-b from-dough/50 to-frosting/20">
       <div className="container mx-auto px-4 max-w-2xl text-center">
         <div className="text-4xl mb-6">🌿</div>
-        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-6">
+        <h2 className="font-serif text-3xl md:text-4xl font-semibold mb-6">
           Our Story
         </h2>
         <p className="text-muted-foreground leading-relaxed mb-4 text-base md:text-lg">

@@ -36,7 +36,7 @@ const OrderPaths = () => {
   return (
     <section id="menu" className="py-20 md:py-28">
       <div className="container mx-auto px-4 max-w-5xl">
-        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center text-foreground mb-4">
+        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-4">
           What Would You Like?
         </h2>
         <p className="text-center text-muted-foreground mb-14 max-w-md mx-auto">
@@ -47,10 +47,10 @@ const OrderPaths = () => {
           {products.map((p) => (
             <div
               key={p.title}
-              className="group relative bg-card rounded-2xl border border-border/60 p-8 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+              className="group relative bg-card rounded-2xl border border-border/60 p-8 hover:shadow-lg hover:shadow-golden/10 hover:border-golden/40 transition-all duration-300"
             >
               <div className="text-4xl mb-4">{p.emoji}</div>
-              <h3 className="font-serif text-2xl font-semibold text-foreground mb-3">
+              <h3 className="font-serif text-2xl font-semibold mb-3">
                 {p.title}
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
@@ -60,7 +60,7 @@ const OrderPaths = () => {
                 href={getWhatsAppUrl(p.message)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsapp/90 text-whatsapp-foreground px-5 py-2.5 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsapp/90 text-whatsapp-foreground px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-whatsapp/15 hover:shadow-lg hover:shadow-whatsapp/20 transition-all duration-300"
               >
                 <MessageCircle size={16} />
                 {p.cta}
