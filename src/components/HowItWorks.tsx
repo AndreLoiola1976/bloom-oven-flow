@@ -20,9 +20,9 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 md:py-28 bg-muted/50">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-dough/60 to-background">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center text-foreground mb-4">
+        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-4">
           How Ordering Works
         </h2>
         <p className="text-center text-muted-foreground mb-14 max-w-md mx-auto">
@@ -32,13 +32,13 @@ const HowItWorks = () => {
         <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           {steps.map((step, i) => (
             <div key={i} className="text-center group">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary mb-5 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-golden/20 text-chocolate mb-5 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 shadow-sm shadow-golden/10">
                 <step.icon size={28} />
               </div>
-              <div className="text-xs font-semibold text-primary/60 uppercase tracking-widest mb-2">
+              <div className="text-xs font-semibold text-rose uppercase tracking-widest mb-2">
                 Step {i + 1}
               </div>
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
+              <h3 className="font-serif text-xl font-semibold mb-2">
                 {step.title}
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">

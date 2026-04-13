@@ -17,9 +17,9 @@ const reviews = [
 
 const Testimonials = () => {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-background to-dough/40">
       <div className="container mx-auto px-4 max-w-5xl">
-        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center text-foreground mb-14">
+        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-14">
           What Our Customers Say
         </h2>
 
@@ -27,21 +27,21 @@ const Testimonials = () => {
           {reviews.map((r) => (
             <div
               key={r.name}
-              className="bg-card rounded-2xl border border-border/60 p-8"
+              className="bg-card rounded-2xl border border-border/60 p-8 shadow-sm shadow-golden/5"
             >
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
                     size={16}
-                    className="fill-secondary text-secondary"
+                    className="fill-golden text-golden"
                   />
                 ))}
               </div>
               <p className="text-foreground/80 text-sm leading-relaxed mb-5 italic">
                 "{r.text}"
               </p>
-              <p className="text-sm font-semibold text-foreground">{r.name}</p>
+              <p className="text-sm font-semibold text-chocolate">{r.name}</p>
             </div>
           ))}
         </div>
