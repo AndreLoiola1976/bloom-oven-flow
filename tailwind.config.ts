@@ -61,8 +61,11 @@ export default {
         charcoal: "hsl(var(--charcoal))",
         chocolate: "hsl(var(--chocolate))",
         golden: "hsl(var(--golden))",
+        caramel: "hsl(var(--caramel))",
         dough: "hsl(var(--dough))",
         frosting: "hsl(var(--frosting))",
+        biscuit: "hsl(var(--biscuit))",
+        latte: "hsl(var(--latte))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

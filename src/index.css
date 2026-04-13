@@ -6,53 +6,57 @@
 
 @layer base {
   :root {
-    /* Warm cream base */
-    --background: 33 45% 96%;
-    --foreground: 24 30% 16%;
+    /* Richer warm cream base */
+    --background: 34 40% 93%;
+    --foreground: 22 35% 14%;
 
-    --card: 35 40% 95%;
-    --card-foreground: 24 30% 16%;
+    /* Warm tinted cards */
+    --card: 33 35% 91%;
+    --card-foreground: 22 35% 14%;
 
-    --popover: 33 45% 96%;
-    --popover-foreground: 24 30% 16%;
+    --popover: 34 40% 93%;
+    --popover-foreground: 22 35% 14%;
 
-    /* Softened sage — more natural/organic */
-    --primary: 105 16% 58%;
+    /* Softened organic sage — pulled back */
+    --primary: 110 14% 52%;
     --primary-foreground: 0 0% 100%;
 
-    /* Warm rose */
-    --secondary: 8 50% 75%;
-    --secondary-foreground: 24 30% 16%;
+    /* Warmer rose-pink */
+    --secondary: 6 45% 72%;
+    --secondary-foreground: 22 35% 14%;
 
-    /* Warm muted tones */
-    --muted: 32 30% 91%;
-    --muted-foreground: 24 15% 42%;
+    /* Richer muted tones */
+    --muted: 30 25% 86%;
+    --muted-foreground: 22 18% 38%;
 
-    --accent: 30 40% 85%;
-    --accent-foreground: 24 30% 16%;
+    --accent: 28 35% 82%;
+    --accent-foreground: 22 35% 14%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 32 25% 86%;
-    --input: 32 25% 86%;
-    --ring: 105 16% 58%;
+    --border: 30 22% 82%;
+    --input: 30 22% 82%;
+    --ring: 110 14% 52%;
 
     --radius: 0.75rem;
 
-    /* WhatsApp — slightly warmer green */
-    --whatsapp: 142 60% 45%;
+    /* WhatsApp — slightly earthier */
+    --whatsapp: 145 55% 41%;
     --whatsapp-foreground: 0 0% 100%;
 
-    /* Brand semantic tokens */
-    --cream: 33 45% 96%;
-    --sage: 105 16% 58%;
-    --rose: 8 50% 75%;
-    --charcoal: 24 30% 16%;
-    --chocolate: 24 40% 22%;
-    --golden: 36 55% 78%;
-    --dough: 35 35% 90%;
-    --frosting: 340 30% 90%;
+    /* Rich brand tokens */
+    --cream: 34 40% 93%;
+    --sage: 110 14% 52%;
+    --rose: 6 45% 72%;
+    --charcoal: 22 35% 14%;
+    --chocolate: 20 45% 18%;
+    --golden: 36 50% 72%;
+    --caramel: 30 45% 62%;
+    --dough: 33 30% 86%;
+    --frosting: 345 28% 88%;
+    --biscuit: 32 35% 78%;
+    --latte: 28 28% 80%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -65,29 +69,32 @@
   }
 
   .dark {
-    --background: 24 20% 12%;
-    --foreground: 33 35% 92%;
-    --card: 24 18% 16%;
-    --card-foreground: 33 35% 92%;
-    --popover: 24 18% 16%;
-    --popover-foreground: 33 35% 92%;
-    --primary: 105 16% 58%;
+    --background: 22 22% 10%;
+    --foreground: 33 30% 90%;
+    --card: 22 20% 14%;
+    --card-foreground: 33 30% 90%;
+    --popover: 22 20% 14%;
+    --popover-foreground: 33 30% 90%;
+    --primary: 110 14% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 8 50% 75%;
-    --secondary-foreground: 33 35% 92%;
-    --muted: 24 15% 20%;
-    --muted-foreground: 33 20% 65%;
-    --accent: 30 25% 25%;
-    --accent-foreground: 33 35% 92%;
+    --secondary: 6 45% 72%;
+    --secondary-foreground: 33 30% 90%;
+    --muted: 22 15% 18%;
+    --muted-foreground: 30 18% 60%;
+    --accent: 28 20% 22%;
+    --accent-foreground: 33 30% 90%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 24 15% 22%;
-    --input: 24 15% 22%;
-    --ring: 105 16% 58%;
-    --chocolate: 33 30% 80%;
-    --golden: 36 40% 60%;
-    --dough: 24 15% 20%;
-    --frosting: 340 20% 25%;
+    --border: 22 15% 20%;
+    --input: 22 15% 20%;
+    --ring: 110 14% 52%;
+    --chocolate: 33 25% 78%;
+    --golden: 36 35% 55%;
+    --caramel: 30 30% 45%;
+    --dough: 22 15% 18%;
+    --frosting: 345 15% 22%;
+    --biscuit: 30 20% 30%;
+    --latte: 28 18% 25%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
