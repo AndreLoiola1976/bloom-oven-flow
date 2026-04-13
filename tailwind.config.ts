@@ -59,6 +59,10 @@ export default {
         sage: "hsl(var(--sage))",
         rose: "hsl(var(--rose))",
         charcoal: "hsl(var(--charcoal))",
+        chocolate: "hsl(var(--chocolate))",
+        golden: "hsl(var(--golden))",
+        dough: "hsl(var(--dough))",
+        frosting: "hsl(var(--frosting))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
