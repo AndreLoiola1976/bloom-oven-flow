@@ -17,7 +17,7 @@ const reviews = [
 
 const Testimonials = () => {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-latte/25 via-biscuit/20 to-dough/40">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-biscuit/35 via-latte/30 to-dough/50">
       <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-14">
           What Our Customers Say
@@ -27,7 +27,7 @@ const Testimonials = () => {
           {reviews.map((r) => (
             <div
               key={r.name}
-              className="bg-cream/80 rounded-2xl border border-biscuit/30 p-8 shadow-md shadow-chocolate/5"
+              className="bg-dough/60 rounded-2xl border border-biscuit/40 p-8 shadow-lg shadow-chocolate/8"
             >
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (

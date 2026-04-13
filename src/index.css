@@ -6,58 +6,52 @@
 
 @layer base {
   :root {
-    /* Richer warm cream base */
-    --background: 34 40% 93%;
-    --foreground: 22 35% 14%;
+    --background: 32 38% 91%;
+    --foreground: 20 40% 12%;
 
-    /* Warm tinted cards */
-    --card: 33 35% 91%;
-    --card-foreground: 22 35% 14%;
+    --card: 30 32% 87%;
+    --card-foreground: 20 40% 12%;
 
-    --popover: 34 40% 93%;
-    --popover-foreground: 22 35% 14%;
+    --popover: 32 38% 91%;
+    --popover-foreground: 20 40% 12%;
 
-    /* Softened organic sage — pulled back */
-    --primary: 110 14% 52%;
+    --primary: 120 12% 42%;
     --primary-foreground: 0 0% 100%;
 
-    /* Warmer rose-pink */
-    --secondary: 6 45% 72%;
-    --secondary-foreground: 22 35% 14%;
+    --secondary: 4 42% 68%;
+    --secondary-foreground: 20 40% 12%;
 
-    /* Richer muted tones */
-    --muted: 30 25% 86%;
-    --muted-foreground: 22 18% 38%;
+    --muted: 28 22% 82%;
+    --muted-foreground: 20 20% 35%;
 
-    --accent: 28 35% 82%;
-    --accent-foreground: 22 35% 14%;
+    --accent: 26 30% 78%;
+    --accent-foreground: 20 40% 12%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 22% 82%;
-    --input: 30 22% 82%;
-    --ring: 110 14% 52%;
+    --border: 28 20% 76%;
+    --input: 28 20% 76%;
+    --ring: 120 12% 42%;
 
     --radius: 0.75rem;
 
-    /* WhatsApp — slightly earthier */
     --whatsapp: 145 55% 41%;
     --whatsapp-foreground: 0 0% 100%;
 
-    /* Rich brand tokens */
-    --cream: 34 40% 93%;
-    --sage: 110 14% 52%;
-    --rose: 6 45% 72%;
-    --charcoal: 22 35% 14%;
-    --chocolate: 20 45% 18%;
-    --golden: 36 50% 72%;
-    --caramel: 30 45% 62%;
-    --dough: 33 30% 86%;
-    --frosting: 345 28% 88%;
-    --biscuit: 32 35% 78%;
-    --latte: 28 28% 80%;
-
+    --cream: 32 38% 91%;
+    --sage: 120 12% 42%;
+    --rose: 4 42% 68%;
+    --charcoal: 20 40% 12%;
+    --chocolate: 18 52% 15%;
+    --golden: 38 55% 62%;
+    --caramel: 28 48% 50%;
+    --dough: 30 28% 82%;
+    --frosting: 345 30% 85%;
+    --biscuit: 30 35% 72%;
+    --latte: 26 25% 74%;
+    --espresso: 20 35% 25%;
+    --toffee: 32 40% 58%;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -119,5 +113,6 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     color: hsl(var(--chocolate));
+    letter-spacing: -0.01em;
   }
 }

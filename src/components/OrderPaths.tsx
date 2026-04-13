@@ -8,8 +8,10 @@ const products = [
     cta: "Order Cookies",
     message: "Hi! I'd like to order cookies 🍪\n\nType: \nQuantity: \nDate needed: ",
     emoji: "🍪",
-    bg: "bg-golden/15",
-    borderHover: "hover:border-golden/50",
+    bg: "bg-golden/25",
+    borderColor: "border-golden/40",
+    borderHover: "hover:border-caramel/60",
+    shadow: "shadow-golden/15",
   },
   {
     title: "Cakes",
@@ -17,8 +19,10 @@ const products = [
     cta: "Order a Cake",
     message: "Hi! I'd like to order a cake 🎂\n\nOccasion: \nSize: \nFlavor: \nDate needed: ",
     emoji: "🎂",
-    bg: "bg-frosting/20",
-    borderHover: "hover:border-rose/40",
+    bg: "bg-frosting/30",
+    borderColor: "border-rose/30",
+    borderHover: "hover:border-rose/50",
+    shadow: "shadow-rose/10",
   },
   {
     title: "Cupcakes & Minis",
@@ -26,8 +30,10 @@ const products = [
     cta: "Order Cupcakes",
     message: "Hi! I'd like to order cupcakes 🧁\n\nQuantity: \nFlavors: \nDate needed: ",
     emoji: "🧁",
-    bg: "bg-caramel/10",
-    borderHover: "hover:border-caramel/40",
+    bg: "bg-caramel/15",
+    borderColor: "border-caramel/30",
+    borderHover: "hover:border-caramel/50",
+    shadow: "shadow-caramel/10",
   },
   {
     title: "Custom Orders",
@@ -35,14 +41,16 @@ const products = [
     cta: "Request Custom Order",
     message: "Hi! I have a custom order request ✨\n\nWhat I'm looking for: \nDate needed: \nAny dietary notes: ",
     emoji: "✨",
-    bg: "bg-latte/30",
-    borderHover: "hover:border-golden/40",
+    bg: "bg-biscuit/30",
+    borderColor: "border-biscuit/40",
+    borderHover: "hover:border-golden/50",
+    shadow: "shadow-chocolate/8",
   },
 ];
 
 const OrderPaths = () => {
   return (
-    <section id="menu" className="py-20 md:py-28 bg-gradient-to-b from-background to-dough/50">
+    <section id="menu" className="py-20 md:py-28 bg-gradient-to-b from-dough/70 via-background to-biscuit/30">
       <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-4">
           What Would You Like?
@@ -55,7 +63,7 @@ const OrderPaths = () => {
           {products.map((p) => (
             <div
               key={p.title}
-              className={`group relative ${p.bg} rounded-2xl border border-biscuit/40 p-8 hover:shadow-xl hover:shadow-chocolate/8 ${p.borderHover} transition-all duration-300`}
+              className={`group relative ${p.bg} rounded-2xl border ${p.borderColor} p-8 hover:shadow-xl ${p.borderHover} transition-all duration-300 shadow-lg ${p.shadow}`}
             >
               <div className="text-4xl mb-4">{p.emoji}</div>
               <h3 className="font-serif text-2xl font-semibold mb-3">
