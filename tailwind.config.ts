@@ -66,6 +66,8 @@ export default {
         frosting: "hsl(var(--frosting))",
         biscuit: "hsl(var(--biscuit))",
         latte: "hsl(var(--latte))",
+        espresso: "hsl(var(--espresso))",
+        toffee: "hsl(var(--toffee))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

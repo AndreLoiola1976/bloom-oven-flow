@@ -20,7 +20,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-biscuit/40 via-latte/30 to-background">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-biscuit/50 via-dough/60 to-latte/40">
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-4">
           How Ordering Works
@@ -32,7 +32,7 @@ const HowItWorks = () => {
         <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           {steps.map((step, i) => (
             <div key={i} className="text-center group">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-golden/25 text-chocolate mb-5 group-hover:bg-caramel group-hover:text-white transition-colors duration-300 shadow-md shadow-golden/15">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-caramel/25 text-espresso mb-5 group-hover:bg-caramel group-hover:text-white transition-colors duration-300 shadow-md shadow-caramel/20">
                 <step.icon size={28} />
               </div>
               <div className="text-xs font-semibold text-caramel uppercase tracking-widest mb-2">
