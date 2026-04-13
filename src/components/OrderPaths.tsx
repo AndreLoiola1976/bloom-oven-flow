@@ -8,6 +8,8 @@ const products = [
     cta: "Order Cookies",
     message: "Hi! I'd like to order cookies 🍪\n\nType: \nQuantity: \nDate needed: ",
     emoji: "🍪",
+    bg: "bg-golden/15",
+    borderHover: "hover:border-golden/50",
   },
   {
     title: "Cakes",
@@ -15,6 +17,8 @@ const products = [
     cta: "Order a Cake",
     message: "Hi! I'd like to order a cake 🎂\n\nOccasion: \nSize: \nFlavor: \nDate needed: ",
     emoji: "🎂",
+    bg: "bg-frosting/20",
+    borderHover: "hover:border-rose/40",
   },
   {
     title: "Cupcakes & Minis",
@@ -22,6 +26,8 @@ const products = [
     cta: "Order Cupcakes",
     message: "Hi! I'd like to order cupcakes 🧁\n\nQuantity: \nFlavors: \nDate needed: ",
     emoji: "🧁",
+    bg: "bg-caramel/10",
+    borderHover: "hover:border-caramel/40",
   },
   {
     title: "Custom Orders",
@@ -29,12 +35,14 @@ const products = [
     cta: "Request Custom Order",
     message: "Hi! I have a custom order request ✨\n\nWhat I'm looking for: \nDate needed: \nAny dietary notes: ",
     emoji: "✨",
+    bg: "bg-latte/30",
+    borderHover: "hover:border-golden/40",
   },
 ];
 
 const OrderPaths = () => {
   return (
-    <section id="menu" className="py-20 md:py-28">
+    <section id="menu" className="py-20 md:py-28 bg-gradient-to-b from-background to-dough/50">
       <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-4">
           What Would You Like?
@@ -47,7 +55,7 @@ const OrderPaths = () => {
           {products.map((p) => (
             <div
               key={p.title}
-              className="group relative bg-card rounded-2xl border border-border/60 p-8 hover:shadow-lg hover:shadow-golden/10 hover:border-golden/40 transition-all duration-300"
+              className={`group relative ${p.bg} rounded-2xl border border-biscuit/40 p-8 hover:shadow-xl hover:shadow-chocolate/8 ${p.borderHover} transition-all duration-300`}
             >
               <div className="text-4xl mb-4">{p.emoji}</div>
               <h3 className="font-serif text-2xl font-semibold mb-3">
@@ -60,7 +68,7 @@ const OrderPaths = () => {
                 href={getWhatsAppUrl(p.message)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsapp/90 text-whatsapp-foreground px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-whatsapp/15 hover:shadow-lg hover:shadow-whatsapp/20 transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsapp/90 text-whatsapp-foreground px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-chocolate/10 hover:shadow-lg transition-all duration-300"
               >
                 <MessageCircle size={16} />
                 {p.cta}
