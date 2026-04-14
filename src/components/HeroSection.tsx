@@ -26,7 +26,7 @@ const HeroSection = () => {
             height={1080}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-cream/95 via-cream/80 to-cream/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-cream/85 via-cream/60 to-transparent" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
@@ -39,10 +39,10 @@ const HeroSection = () => {
               </span>
             </div>
 
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-foreground">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-foreground drop-shadow-sm">
               Freshly Baked Cookies.
               <br />
-              <span className="text-sage">Limited Batches Every Week.</span>
+              <span className="text-toffee">Limited Batches Every Week.</span>
             </h1>
 
             <p className="text-lg text-muted-foreground max-w-md mb-4 leading-relaxed font-light">
@@ -59,7 +59,7 @@ const HeroSection = () => {
               href={getWhatsAppUrl("Hi! I'd like to order the 6-Cookie Box ($42) 🍪")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-sage hover:bg-sage/90 text-white px-10 py-4 rounded-full text-lg font-bold shadow-lg shadow-sage/25 hover:shadow-xl hover:shadow-sage/35 transition-all duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-3 bg-sage hover:bg-sage/85 text-white px-12 py-5 rounded-full text-lg font-bold shadow-xl shadow-sage/30 hover:shadow-2xl hover:shadow-sage/40 transition-all duration-300 hover:-translate-y-1 ring-2 ring-sage/20 ring-offset-2 ring-offset-cream"
             >
               <MessageCircle size={22} />
               Order via WhatsApp
