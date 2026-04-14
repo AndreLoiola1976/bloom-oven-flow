@@ -6,64 +6,66 @@
 
 @layer base {
   :root {
-    /* Deep chocolate dark */
-    --dark: 20 30% 10%;
-    --dark-foreground: 35 20% 90%;
+    /* Warm cream background */
+    --cream: 36 33% 95%;
+    --cream-foreground: 200 8% 20%;
 
-    /* Warm cream */
-    --cream: 35 40% 93%;
-    --cream-foreground: 20 35% 15%;
+    /* Sage green — brand accent */
+    --sage: 135 18% 52%;
+    --sage-foreground: 0 0% 100%;
 
-    /* Caramel / warm gold accent */
-    --caramel: 32 65% 48%;
-    --caramel-foreground: 20 30% 10%;
+    /* Warm charcoal — primary text */
+    --charcoal: 200 8% 20%;
 
-    /* Muted sage */
-    --sage: 120 12% 55%;
+    /* Subtle warm accent (honey / soft caramel) */
+    --warm-accent: 34 55% 58%;
 
-    /* Chocolate text */
-    --chocolate: 20 40% 14%;
-
-    /* System tokens mapped to palette */
+    /* System tokens */
     --background: var(--cream);
-    --foreground: var(--cream-foreground);
+    --foreground: var(--charcoal);
 
-    --card: 33 30% 89%;
-    --card-foreground: 20 35% 15%;
+    --card: 36 28% 92%;
+    --card-foreground: var(--charcoal);
 
     --popover: var(--cream);
-    --popover-foreground: var(--cream-foreground);
+    --popover-foreground: var(--charcoal);
 
-    --primary: var(--caramel);
+    --primary: var(--sage);
     --primary-foreground: 0 0% 100%;
 
-    --secondary: var(--dark);
-    --secondary-foreground: var(--dark-foreground);
+    --secondary: 36 20% 88%;
+    --secondary-foreground: var(--charcoal);
 
-    --muted: 30 18% 85%;
-    --muted-foreground: 20 15% 40%;
+    --muted: 36 18% 90%;
+    --muted-foreground: 200 5% 45%;
 
-    --accent: 30 25% 80%;
-    --accent-foreground: 20 35% 15%;
+    --accent: 36 22% 87%;
+    --accent-foreground: var(--charcoal);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 18% 78%;
-    --input: 30 18% 78%;
-    --ring: var(--caramel);
+    --border: 36 15% 85%;
+    --input: 36 15% 85%;
+    --ring: var(--sage);
 
     --radius: 0.75rem;
 
     --whatsapp: 145 55% 41%;
     --whatsapp-foreground: 0 0% 100%;
 
-    --golden: 38 60% 55%;
-    --dough: 33 25% 85%;
-    --frosting: 345 25% 82%;
-    --biscuit: 30 30% 72%;
-    --toffee: 30 45% 52%;
-    --espresso: 20 30% 18%;
+    /* Utility palette tokens */
+    --dark: 200 10% 16%;
+    --dark-foreground: 36 20% 92%;
+    --caramel: var(--warm-accent);
+    --caramel-foreground: 200 8% 15%;
+    --chocolate: 200 8% 18%;
+    --espresso: 200 10% 14%;
+    --golden: 38 50% 60%;
+    --dough: 36 22% 90%;
+    --frosting: 345 20% 88%;
+    --biscuit: 36 25% 80%;
+    --toffee: 30 35% 52%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -78,23 +80,23 @@
   .dark {
     --background: var(--dark);
     --foreground: var(--dark-foreground);
-    --card: 20 25% 14%;
-    --card-foreground: 35 20% 90%;
-    --popover: 20 25% 14%;
-    --popover-foreground: 35 20% 90%;
-    --primary: var(--caramel);
+    --card: 200 8% 20%;
+    --card-foreground: 36 20% 90%;
+    --popover: 200 8% 20%;
+    --popover-foreground: 36 20% 90%;
+    --primary: var(--sage);
     --primary-foreground: 0 0% 100%;
-    --secondary: 30 15% 25%;
-    --secondary-foreground: 35 20% 90%;
-    --muted: 20 15% 20%;
-    --muted-foreground: 30 15% 55%;
-    --accent: 25 18% 22%;
-    --accent-foreground: 35 20% 90%;
+    --secondary: 200 8% 25%;
+    --secondary-foreground: 36 20% 90%;
+    --muted: 200 8% 22%;
+    --muted-foreground: 36 12% 55%;
+    --accent: 200 8% 24%;
+    --accent-foreground: 36 20% 90%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
-    --border: 20 12% 22%;
-    --input: 20 12% 22%;
-    --ring: var(--caramel);
+    --border: 200 8% 24%;
+    --input: 200 8% 24%;
+    --ring: var(--sage);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

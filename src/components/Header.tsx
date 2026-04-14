@@ -19,7 +19,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-dark/95 backdrop-blur-md shadow-lg shadow-black/20"
+          ? "bg-cream/95 backdrop-blur-md shadow-md shadow-foreground/5"
           : "bg-transparent"
       }`}
       style={{ top: scrolled ? 0 : '40px' }}
@@ -30,13 +30,13 @@ const Header = () => {
         <nav className="flex items-center gap-6">
           <button
             onClick={() => scrollTo("menu")}
-            className="hidden md:block text-sm font-medium text-dark-foreground/60 hover:text-caramel transition-colors"
+            className="hidden md:block text-sm font-medium text-foreground/60 hover:text-sage transition-colors"
           >
             Menu
           </button>
           <button
             onClick={() => scrollTo("about")}
-            className="hidden md:block text-sm font-medium text-dark-foreground/60 hover:text-caramel transition-colors"
+            className="hidden md:block text-sm font-medium text-foreground/60 hover:text-sage transition-colors"
           >
             About
           </button>
@@ -44,7 +44,7 @@ const Header = () => {
             href="https://instagram.com/thebloomoven"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-dark-foreground/40 hover:text-caramel transition-colors"
+            className="text-foreground/40 hover:text-sage transition-colors"
             aria-label="Follow us on Instagram"
           >
             <Instagram size={20} />
