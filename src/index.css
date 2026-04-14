@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,52 +6,65 @@
 
 @layer base {
   :root {
-    --background: 32 38% 91%;
-    --foreground: 20 40% 12%;
+    /* Deep chocolate dark */
+    --dark: 20 30% 10%;
+    --dark-foreground: 35 20% 90%;
 
-    --card: 30 32% 87%;
-    --card-foreground: 20 40% 12%;
+    /* Warm cream */
+    --cream: 35 40% 93%;
+    --cream-foreground: 20 35% 15%;
 
-    --popover: 32 38% 91%;
-    --popover-foreground: 20 40% 12%;
+    /* Caramel / warm gold accent */
+    --caramel: 32 65% 48%;
+    --caramel-foreground: 20 30% 10%;
 
-    --primary: 120 12% 42%;
+    /* Muted sage */
+    --sage: 120 12% 55%;
+
+    /* Chocolate text */
+    --chocolate: 20 40% 14%;
+
+    /* System tokens mapped to palette */
+    --background: var(--cream);
+    --foreground: var(--cream-foreground);
+
+    --card: 33 30% 89%;
+    --card-foreground: 20 35% 15%;
+
+    --popover: var(--cream);
+    --popover-foreground: var(--cream-foreground);
+
+    --primary: var(--caramel);
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 4 42% 68%;
-    --secondary-foreground: 20 40% 12%;
+    --secondary: var(--dark);
+    --secondary-foreground: var(--dark-foreground);
 
-    --muted: 28 22% 82%;
-    --muted-foreground: 20 20% 35%;
+    --muted: 30 18% 85%;
+    --muted-foreground: 20 15% 40%;
 
-    --accent: 26 30% 78%;
-    --accent-foreground: 20 40% 12%;
+    --accent: 30 25% 80%;
+    --accent-foreground: 20 35% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 28 20% 76%;
-    --input: 28 20% 76%;
-    --ring: 120 12% 42%;
+    --border: 30 18% 78%;
+    --input: 30 18% 78%;
+    --ring: var(--caramel);
 
     --radius: 0.75rem;
 
     --whatsapp: 145 55% 41%;
     --whatsapp-foreground: 0 0% 100%;
 
-    --cream: 32 38% 91%;
-    --sage: 120 12% 42%;
-    --rose: 4 42% 68%;
-    --charcoal: 20 40% 12%;
-    --chocolate: 18 52% 15%;
-    --golden: 38 55% 62%;
-    --caramel: 28 48% 50%;
-    --dough: 30 28% 82%;
-    --frosting: 345 30% 85%;
-    --biscuit: 30 35% 72%;
-    --latte: 26 25% 74%;
-    --espresso: 20 35% 25%;
-    --toffee: 32 40% 58%;
+    --golden: 38 60% 55%;
+    --dough: 33 25% 85%;
+    --frosting: 345 25% 82%;
+    --biscuit: 30 30% 72%;
+    --toffee: 30 45% 52%;
+    --espresso: 20 30% 18%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -63,32 +76,25 @@
   }
 
   .dark {
-    --background: 22 22% 10%;
-    --foreground: 33 30% 90%;
-    --card: 22 20% 14%;
-    --card-foreground: 33 30% 90%;
-    --popover: 22 20% 14%;
-    --popover-foreground: 33 30% 90%;
-    --primary: 110 14% 52%;
+    --background: var(--dark);
+    --foreground: var(--dark-foreground);
+    --card: 20 25% 14%;
+    --card-foreground: 35 20% 90%;
+    --popover: 20 25% 14%;
+    --popover-foreground: 35 20% 90%;
+    --primary: var(--caramel);
     --primary-foreground: 0 0% 100%;
-    --secondary: 6 45% 72%;
-    --secondary-foreground: 33 30% 90%;
-    --muted: 22 15% 18%;
-    --muted-foreground: 30 18% 60%;
-    --accent: 28 20% 22%;
-    --accent-foreground: 33 30% 90%;
+    --secondary: 30 15% 25%;
+    --secondary-foreground: 35 20% 90%;
+    --muted: 20 15% 20%;
+    --muted-foreground: 30 15% 55%;
+    --accent: 25 18% 22%;
+    --accent-foreground: 35 20% 90%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 22 15% 20%;
-    --input: 22 15% 20%;
-    --ring: 110 14% 52%;
-    --chocolate: 33 25% 78%;
-    --golden: 36 35% 55%;
-    --caramel: 30 30% 45%;
-    --dough: 22 15% 18%;
-    --frosting: 345 15% 22%;
-    --biscuit: 30 20% 30%;
-    --latte: 28 18% 25%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 20 12% 22%;
+    --input: 20 12% 22%;
+    --ring: var(--caramel);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -112,7 +118,6 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
-    color: hsl(var(--chocolate));
     letter-spacing: -0.01em;
   }
 }
