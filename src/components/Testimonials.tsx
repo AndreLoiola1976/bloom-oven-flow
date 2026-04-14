@@ -20,8 +20,10 @@ const Testimonials = () => {
     <section className="py-20 md:py-28 bg-dough/40">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-14">
-          <span className="text-sm font-semibold text-caramel uppercase tracking-[0.2em] mb-4 block">
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-sage uppercase tracking-[0.2em] mb-4">
+            <span className="w-8 h-px bg-sage/40" />
             Real Reviews
+            <span className="w-8 h-px bg-sage/40" />
           </span>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-chocolate">
             What Our Customers Say

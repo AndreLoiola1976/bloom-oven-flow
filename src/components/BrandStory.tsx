@@ -2,8 +2,10 @@ const BrandStory = () => {
   return (
     <section id="about" className="py-20 md:py-28 bg-cream">
       <div className="container mx-auto px-4 max-w-2xl text-center">
-        <span className="text-sm font-semibold text-caramel uppercase tracking-[0.2em] mb-4 block">
+        <span className="inline-flex items-center gap-2 text-sm font-semibold text-sage uppercase tracking-[0.2em] mb-4">
+          <span className="w-8 h-px bg-sage/40" />
           Our Story
+          <span className="w-8 h-px bg-sage/40" />
         </span>
         <h2 className="font-serif text-3xl md:text-4xl font-bold text-chocolate mb-8">
           Born from Love,
