@@ -1,20 +1,23 @@
-import { Instagram, Facebook, Phone, MessageCircle } from "lucide-react";
+import { Instagram, Facebook, Phone, MessageCircle, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const Footer = () => {
   return (
-    <footer className="py-12 border-t border-biscuit/40 bg-gradient-to-b from-biscuit/35 to-espresso/15">
+    <footer className="py-14 bg-dark border-t border-dark-foreground/10">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
           <div className="text-center md:text-left">
-            <img src={logo} alt="The Bloom Oven" className="h-10 mx-auto md:mx-0 mb-3" />
-            <p className="text-sm text-muted-foreground">
+            <img src={logo} alt="The Bloom Oven" className="h-10 mx-auto md:mx-0 mb-3 brightness-150" />
+            <p className="text-sm text-dark-foreground/50">
               Licensed Home Bakery
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-dark-foreground/50">
               5 Grand St, Connecticut
             </p>
+            <a href="mailto:thebloomoven@gmail.com" className="text-sm text-caramel hover:underline mt-1 inline-block">
+              thebloomoven@gmail.com
+            </a>
           </div>
 
           <div className="flex items-center gap-5">
@@ -22,7 +25,7 @@ const Footer = () => {
               href={getWhatsAppUrl("Hi! I'd like to place an order 🌸")}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-chocolate/40 hover:text-whatsapp transition-colors"
+              className="text-dark-foreground/30 hover:text-caramel transition-colors"
               aria-label="WhatsApp"
             >
               <MessageCircle size={22} />
@@ -31,7 +34,7 @@ const Footer = () => {
               href="https://instagram.com/thebloomoven"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-chocolate/40 hover:text-chocolate transition-colors"
+              className="text-dark-foreground/30 hover:text-caramel transition-colors"
               aria-label="Instagram"
             >
               <Instagram size={22} />
@@ -40,14 +43,14 @@ const Footer = () => {
               href="https://facebook.com/thebloomoven"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-chocolate/40 hover:text-chocolate transition-colors"
+              className="text-dark-foreground/30 hover:text-caramel transition-colors"
               aria-label="Facebook"
             >
               <Facebook size={22} />
             </a>
             <a
               href="tel:+14752569577"
-              className="text-chocolate/40 hover:text-chocolate transition-colors"
+              className="text-dark-foreground/30 hover:text-caramel transition-colors"
               aria-label="Call us"
             >
               <Phone size={22} />
@@ -55,8 +58,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-biscuit/25 text-center">
-          <p className="text-xs text-muted-foreground">
+        <div className="mt-10 pt-6 border-t border-dark-foreground/10 text-center">
+          <p className="text-xs text-dark-foreground/30">
             © {new Date().getFullYear()} The Bloom Oven. All rights reserved.
           </p>
         </div>

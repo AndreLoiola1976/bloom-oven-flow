@@ -17,24 +17,29 @@ const reviews = [
 
 const Testimonials = () => {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-biscuit/35 via-latte/30 to-dough/50">
+    <section className="py-20 md:py-28 bg-dough/40">
       <div className="container mx-auto px-4 max-w-5xl">
-        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-14">
-          What Our Customers Say
-        </h2>
+        <div className="text-center mb-14">
+          <span className="text-sm font-semibold text-caramel uppercase tracking-[0.2em] mb-4 block">
+            Real Reviews
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-chocolate">
+            What Our Customers Say
+          </h2>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {reviews.map((r) => (
             <div
               key={r.name}
-              className="bg-dough/60 rounded-2xl border border-biscuit/40 p-8 shadow-lg shadow-chocolate/8"
+              className="bg-card rounded-2xl border border-border p-8 shadow-md shadow-chocolate/5"
             >
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
                     size={16}
-                    className="fill-golden text-golden"
+                    className="fill-caramel text-caramel"
                   />
                 ))}
               </div>
