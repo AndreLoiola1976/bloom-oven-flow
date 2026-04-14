@@ -1,88 +1,65 @@
 import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
-const products = [
-  {
-    title: "Cookies & Treats",
-    description: "Classic chocolate chip, snickerdoodle, oatmeal raisin, and seasonal specials — all gluten-free and dairy-free.",
-    cta: "Order Cookies",
-    message: "Hi! I'd like to order cookies 🍪\n\nType: \nQuantity: \nDate needed: ",
-    emoji: "🍪",
-    bg: "bg-golden/25",
-    borderColor: "border-golden/40",
-    borderHover: "hover:border-caramel/60",
-    shadow: "shadow-golden/15",
-  },
-  {
-    title: "Cakes",
-    description: "Custom celebration cakes for birthdays, weddings, and special moments — beautifully decorated and allergen-friendly.",
-    cta: "Order a Cake",
-    message: "Hi! I'd like to order a cake 🎂\n\nOccasion: \nSize: \nFlavor: \nDate needed: ",
-    emoji: "🎂",
-    bg: "bg-frosting/30",
-    borderColor: "border-rose/30",
-    borderHover: "hover:border-rose/50",
-    shadow: "shadow-rose/10",
-  },
-  {
-    title: "Cupcakes & Minis",
-    description: "Perfect for parties and gifts. Available in boxes of 6 or 12 with mix-and-match flavors.",
-    cta: "Order Cupcakes",
-    message: "Hi! I'd like to order cupcakes 🧁\n\nQuantity: \nFlavors: \nDate needed: ",
-    emoji: "🧁",
-    bg: "bg-caramel/15",
-    borderColor: "border-caramel/30",
-    borderHover: "hover:border-caramel/50",
-    shadow: "shadow-caramel/10",
-  },
-  {
-    title: "Custom Orders",
-    description: "Have something special in mind? Tell us your vision and we'll bring it to life — dietary needs always welcome.",
-    cta: "Request Custom Order",
-    message: "Hi! I have a custom order request ✨\n\nWhat I'm looking for: \nDate needed: \nAny dietary notes: ",
-    emoji: "✨",
-    bg: "bg-biscuit/30",
-    borderColor: "border-biscuit/40",
-    borderHover: "hover:border-golden/50",
-    shadow: "shadow-chocolate/8",
-  },
+const cookies = [
+  { name: "Chocolate Chip", emoji: "🍪", note: "Rich & gooey" },
+  { name: "Red Velvet", emoji: "🔴", note: "Velvety & indulgent" },
+  { name: "Pistachio", emoji: "💚", note: "Nutty & fragrant" },
 ];
 
 const OrderPaths = () => {
   return (
-    <section id="menu" className="py-20 md:py-28 bg-gradient-to-b from-dough/70 via-background to-biscuit/30">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-4">
-          What Would You Like?
-        </h2>
-        <p className="text-center text-muted-foreground mb-14 max-w-md mx-auto">
-          Pick a category to start your order — we'll take it from there.
-        </p>
+    <section id="menu" className="py-20 md:py-28 bg-cream">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="text-center mb-16">
+          <span className="text-sm font-semibold text-caramel uppercase tracking-[0.2em] mb-4 block">
+            Our Signature Box
+          </span>
+          <h2 className="font-serif text-3xl md:text-5xl font-bold text-chocolate mb-4">
+            The 6-Cookie Box
+          </h2>
+          <p className="text-muted-foreground max-w-md mx-auto text-lg">
+            2 of each flavor — handcrafted, allergen-friendly, and impossible to resist.
+          </p>
+        </div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
-          {products.map((p) => (
+        {/* Cookie cards */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {cookies.map((cookie) => (
             <div
-              key={p.title}
-              className={`group relative ${p.bg} rounded-2xl border ${p.borderColor} p-8 hover:shadow-xl ${p.borderHover} transition-all duration-300 shadow-lg ${p.shadow}`}
+              key={cookie.name}
+              className="group bg-card rounded-2xl p-8 text-center border border-border hover:border-caramel/40 transition-all duration-300 shadow-md shadow-chocolate/5 hover:shadow-xl hover:shadow-caramel/10"
             >
-              <div className="text-4xl mb-4">{p.emoji}</div>
-              <h3 className="font-serif text-2xl font-semibold mb-3">
-                {p.title}
+              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                {cookie.emoji}
+              </div>
+              <h3 className="font-serif text-xl font-semibold text-chocolate mb-1">
+                {cookie.name}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                {p.description}
-              </p>
-              <a
-                href={getWhatsAppUrl(p.message)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsapp/90 text-whatsapp-foreground px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-chocolate/10 hover:shadow-lg transition-all duration-300"
-              >
-                <MessageCircle size={16} />
-                {p.cta}
-              </a>
+              <p className="text-sm text-muted-foreground">{cookie.note}</p>
+              <p className="text-xs text-caramel font-medium mt-2">× 2</p>
             </div>
           ))}
+        </div>
+
+        {/* Price + CTA */}
+        <div className="text-center bg-dark rounded-3xl p-10 md:p-14 shadow-2xl shadow-black/20">
+          <div className="mb-6">
+            <span className="font-serif text-5xl md:text-6xl font-bold text-caramel">$42</span>
+            <span className="text-dark-foreground/50 text-lg ml-2">/ box</span>
+          </div>
+          <p className="text-dark-foreground/60 mb-8 max-w-sm mx-auto">
+            6 cookies of pure happiness. Perfect for gifting or treating yourself.
+          </p>
+          <a
+            href={getWhatsAppUrl("Hi! I'd like to order the 6-Cookie Box ($42) 🍪\n\nDelivery or Pickup?\nDate needed: ")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-caramel hover:bg-caramel/90 text-espresso px-10 py-4 rounded-full text-lg font-bold shadow-lg shadow-caramel/25 hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <MessageCircle size={20} />
+            Order This Box
+          </a>
         </div>
       </div>
     </section>
