@@ -26,10 +26,10 @@ const HeroSection = () => {
             height={1080}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-cream/85 via-cream/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-cream/90 via-cream/65 to-transparent" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 container mx-auto px-4 pt-28 md:pt-24 grid lg:grid-cols-2 gap-12 items-center">
           {/* Left — copy */}
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-sage/30 bg-sage/10">
