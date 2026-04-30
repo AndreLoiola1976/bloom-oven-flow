@@ -79,7 +79,7 @@ const Order = () => {
     // Build a structured message and hand off via SMS so the bakery
     // gets a complete order on their phone — no backend required.
     const lines = [
-      "New Order — 6 Cookie Box ($42)",
+      `New Order — ${quantity} x 6 Cookie Box ($${BOX_PRICE} each) — Total $${quantity * BOX_PRICE}`,
       `Name: ${form.name || "—"}`,
       `Phone: ${form.phone}`,
       `Preferred contact: ${form.contact === "text" ? "Text (SMS)" : "Call"}`,
