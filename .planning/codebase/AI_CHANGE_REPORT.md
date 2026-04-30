@@ -37,6 +37,36 @@ Running log of non-trivial migration steps. Newest entries on top. Each entry MU
 
 ---
 
+## 2026-04-30 — Refactor step: pickupHelper contract cleanup
+
+**Scope**: Convert `orderPage.pickupHelper` from a string with an embedded location literal into a builder that receives `pickupLocation`.
+
+**Files modified**:
+- `src/core/tenant/tenant.types.ts`
+- `src/tenants/bloom-oven/content.ts`
+- `src/pages/Order.tsx`
+
+**Hardcoded data removed**:
+- `"Bethel, CT"` literal embedded inside `pickupHelper` content string → now injected from `tenant.business.pickupLocation` via builder argument.
+
+**Contract change**:
+- `orderPage.pickupHelper: string` → `orderPage.pickupHelper: (pickupLocation: string) => string`
+
+**Caller change**:
+- `Order.tsx`: `COPY.pickupHelper` → `COPY.pickupHelper(PICKUP_LOCATION)`
+
+**Remaining tech debt**:
+- `index.html` metadata still hardcoded
+- `HeroSection.tsx` badges + alts still hardcoded
+- `Footer.tsx` logo-alt duplicates `header.logoAlt`
+
+**Validation**:
+- TypeScript build: **pass** (`tsc --noEmit` exit 0)
+- Order flow tested: yes (rendered helper text identical for the active tenant)
+- Visual unchanged: yes
+
+---
+
 ## 2026-04-30 — Refactor step: NotFound.tsx
 
 **Scope**: Move user-facing literals on the 404 page into the tenant content contract.
