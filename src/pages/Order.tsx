@@ -184,6 +184,69 @@ const Order = () => {
               onSubmit={handleSubmit}
               className="bg-card rounded-3xl border border-border shadow-lg p-6 md:p-10 space-y-6"
             >
+              {/* Product selector — quantity & flavors */}
+              <div className="rounded-2xl border border-border bg-background/60 p-5 space-y-5">
+                <div className="flex items-center justify-between gap-4 flex-wrap">
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">6 Cookie Box</p>
+                    <p className="text-xs text-muted-foreground">${BOX_PRICE} per box</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setQuantity((q) => Math.max(0, q - 1))}
+                      aria-label="Decrease quantity"
+                      className="w-9 h-9 rounded-full border border-border bg-background hover:border-sage/40 text-foreground flex items-center justify-center transition-colors disabled:opacity-40"
+                      disabled={quantity <= 0}
+                    >
+                      <Minus size={16} />
+                    </button>
+                    <span className="min-w-[2ch] text-center font-serif text-xl font-bold text-foreground tabular-nums">
+                      {quantity}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setQuantity((q) => q + 1)}
+                      aria-label="Increase quantity"
+                      className="w-9 h-9 rounded-full border border-sage bg-sage text-white hover:bg-sage/90 flex items-center justify-center transition-colors"
+                    >
+                      <Plus size={16} />
+                    </button>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-xs text-muted-foreground">Subtotal</p>
+                    <p className="font-serif text-xl font-bold text-foreground tabular-nums">
+                      ${quantity * BOX_PRICE}
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold text-foreground/70 uppercase tracking-wide mb-2">
+                    Flavor preferences <span className="text-muted-foreground font-normal normal-case tracking-normal">(optional)</span>
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {FLAVORS.map((flavor) => {
+                      const active = flavors.includes(flavor);
+                      return (
+                        <button
+                          key={flavor}
+                          type="button"
+                          onClick={() => toggleFlavor(flavor)}
+                          className={`px-4 h-9 rounded-full border text-xs font-medium transition-all ${
+                            active
+                              ? "bg-sage border-sage text-white shadow-sm shadow-sage/20"
+                              : "bg-background border-border text-foreground/70 hover:border-sage/40"
+                          }`}
+                        >
+                          {flavor}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">
@@ -276,7 +339,7 @@ const Order = () => {
                 <textarea
                   rows={4}
                   value={form.details}
-                  onChange={(e) => setForm({ ...form, details: e.target.value })}
+                  onChange={(e) => handleDetailsChange(e.target.value)}
                   placeholder="Number of boxes, special requests, address if delivery…"
                   className="w-full rounded-2xl border border-border bg-background px-5 py-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:border-sage/40 transition-colors resize-none"
                 />
