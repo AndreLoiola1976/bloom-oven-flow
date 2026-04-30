@@ -189,6 +189,11 @@ export type Content = {
     decreaseAriaLabel: (productName: string) => string;
     increaseAriaLabel: (productName: string) => string;
   };
+  notFound: {
+    code: string;
+    title: string;
+    backCta: string;
+  };
 };
 
 export type Tenant = {
