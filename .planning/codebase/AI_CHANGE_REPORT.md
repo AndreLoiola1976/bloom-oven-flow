@@ -37,6 +37,39 @@ Running log of non-trivial migration steps. Newest entries on top. Each entry MU
 
 ---
 
+## 2026-04-30 — Refactor step: HeroSection literals
+
+**Scope**: Move HeroSection user-facing strings (badges + image alts) into the tenant content contract.
+
+**Files modified**:
+- `src/core/tenant/tenant.types.ts`
+- `src/tenants/bloom-oven/content.ts`
+- `src/components/HeroSection.tsx`
+
+**Hardcoded data removed**:
+- `"Freshly baked chocolate chip, red velvet, and pistachio cookies"` (background alt) → `tenant.content.hero.backgroundImageAlt`
+- Inline template ``${tenant.business.name} 6-Cookie Box: Chocolate Chip, Red Velvet, Pistachio`` → `tenant.content.hero.productImageAlt(businessName)` builder
+- `"Allergen-Friendly"` badge → `tenant.content.hero.badges[0]`
+- `"Made Fresh Weekly"` badge → `tenant.content.hero.badges[1]`
+
+**Fields added**:
+- `hero.backgroundImageAlt: string`
+- `hero.productImageAlt: (businessName: string) => string`
+- `hero.badges: readonly string[]`
+
+**Component change**:
+- Badges rendered via `hero.badges.map(...)`. The two distinct badge background classes (`bg-sage/30` vs `bg-white/20`) are preserved by index: first badge gets sage, the rest get the secondary style. Visual output for the existing two badges is byte-identical.
+
+**Remaining tech debt**:
+- `index.html` metadata still hardcoded
+- `Footer.tsx` logo-alt duplicates `header.logoAlt`
+
+**Validation**:
+- TypeScript build: **pass** (`tsc --noEmit` exit 0)
+- Visual unchanged: yes (no className, layout, or DOM order changes for current 2-badge content)
+
+---
+
 ## 2026-04-30 — Refactor step: pickupHelper contract cleanup
 
 **Scope**: Convert `orderPage.pickupHelper` from a string with an embedded location literal into a builder that receives `pickupLocation`.
