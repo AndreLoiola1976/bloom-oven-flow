@@ -6,60 +6,23 @@ import Footer from "@/components/Footer";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { getSmsUrl, getTelUrl, US_PHONE_DISPLAY } from "@/lib/contact";
 import heroCookies from "@/assets/hero-cookies.jpg";
+import { tenant } from "@/core/tenant/tenant";
+import {
+  buildLineItems,
+  calculateSubtotal,
+  isShippingBelowMinimum,
+  isLargeOrder as isLargeOrderFn,
+} from "@/features/order-intake/orderCalculations";
+import { buildOrderSmsMessage } from "@/features/order-intake/orderMessage";
 
 type ContactMethod = "text" | "call";
 type Fulfillment = "pickup" | "shipping";
 
-const BAKERY_EMAIL = "thebloomoven@gmail.com";
-const SHIPPING_MINIMUM = 20;
-
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  note?: string;
-  highlight?: boolean;
-};
-
-const PRODUCTS: Product[] = [
-  {
-    id: "box-6",
-    name: "6 Cookie Box",
-    price: 42,
-    description: "Includes 2 Chocolate Chip, 2 Red Velvet, and 2 Pistachio.",
-    note: "Perfect mix of our best flavors.",
-    highlight: true,
-  },
-  {
-    id: "chocolate-chip",
-    name: "Chocolate Chip Cookies",
-    price: 7,
-    description:
-      "A classic done right. Soft, rich, and packed with chocolate. Made gluten-free with a perfect balance of texture and flavor.",
-  },
-  {
-    id: "pistachio",
-    name: "Pistachio Stuffed Cookies",
-    price: 9,
-    description:
-      "Our signature pistachio stuffed cookie, filled with a rich and creamy pistachio center. Soft on the inside, made fresh in small batches.",
-  },
-  {
-    id: "red-velvet",
-    name: "Red Velvet Cookies",
-    price: 7,
-    description:
-      "Soft, rich, and perfectly balanced with a hint of cocoa. A gluten-free take on a classic favorite.",
-  },
-  {
-    id: "mini-jar",
-    name: "Mini Cookie Jars (16oz)",
-    price: 22,
-    description:
-      "Bite-sized versions of our signature cookies, perfect for sharing or enjoying throughout the week. Packed in a 16oz jar.",
-  },
-];
+const PRODUCTS = tenant.catalog.products;
+const SHIPPING_MINIMUM = tenant.business.shippingMinimum;
+const BAKERY_EMAIL = tenant.contact.email;
+const PICKUP_LOCATION = tenant.business.pickupLocation;
+const COPY = tenant.content.orderPage;
 
 const Order = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -79,22 +42,20 @@ const Order = () => {
   });
 
   const lineItems = useMemo(
-    () =>
-      PRODUCTS.map((p) => ({ ...p, qty: quantities[p.id] || 0 })).filter(
-        (p) => p.qty > 0
-      ),
+    () => buildLineItems(PRODUCTS, quantities),
     [quantities]
   );
 
-  const subtotal = useMemo(
-    () => lineItems.reduce((sum, p) => sum + p.qty * p.price, 0),
-    [lineItems]
-  );
+  const subtotal = useMemo(() => calculateSubtotal(lineItems), [lineItems]);
 
   const hasItems = lineItems.length > 0;
-  const shippingBelowMinimum =
-    form.fulfillment === "shipping" && hasItems && subtotal < SHIPPING_MINIMUM;
-  const isLargeOrder = subtotal >= 100;
+  const shippingBelowMinimum = isShippingBelowMinimum(
+    form.fulfillment,
+    subtotal,
+    hasItems,
+    SHIPPING_MINIMUM
+  );
+  const largeOrder = isLargeOrderFn(subtotal);
 
   // subtle highlight pulse on subtotal change
   const [subtotalPulse, setSubtotalPulse] = useState(false);
@@ -113,29 +74,9 @@ const Order = () => {
     setQuantities((q) => ({ ...q, [id]: Math.max(0, next) }));
   };
 
-  const buildSummaryText = () => {
-    if (!hasItems) return "";
-    const lines = ["Order:"];
-    for (const item of lineItems) {
-      lines.push(`- ${item.qty} x ${item.name} ($${item.price} each)`);
-    }
-    lines.push(`Subtotal: $${subtotal}`);
-    lines.push(
-      `Fulfillment: ${form.fulfillment === "pickup" ? "Pickup" : "Shipping"}`
-    );
-    lines.push(
-      `Preferred contact: ${form.contact === "text" ? "Text (SMS)" : "Call"}`
-    );
-    return lines.join("\n");
-  };
-
-  // Keep notes auto-prefilled with summary preview unless user edited it.
-  // We keep the visible Order Summary box separate; this only fills the
-  // free-text "Order Notes" if the user hasn't typed anything custom.
+  // Track latest summary snapshot (kept for parity with previous behavior)
   useEffect(() => {
-    // No auto-fill into notes — Order Summary lives in its own visible box.
-    // Just track latest snapshot for any future use.
-    lastAutoRef.current = buildSummaryText();
+    lastAutoRef.current = "";
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantities, form.fulfillment, form.contact]);
 
@@ -143,20 +84,18 @@ const Order = () => {
     e.preventDefault();
     if (!form.phone.trim() || !hasItems) return;
 
-    const lines = [
-      `New Order Request — Subtotal $${subtotal}`,
-      ...lineItems.map(
-        (i) => `- ${i.qty} x ${i.name} ($${i.price} each)`
-      ),
-      `Name: ${form.name || "—"}`,
-      `Phone: ${form.phone}`,
-      `Preferred contact: ${form.contact === "text" ? "Text (SMS)" : "Call"}`,
-      `Fulfillment: ${form.fulfillment === "pickup" ? "Pickup" : "Shipping"}`,
-      form.when ? `When: ${form.when}` : null,
-      form.notes ? `Notes: ${form.notes}` : null,
-    ].filter(Boolean);
+    const message = buildOrderSmsMessage({
+      lineItems,
+      subtotal,
+      name: form.name,
+      phone: form.phone,
+      contact: form.contact,
+      fulfillment: form.fulfillment,
+      when: form.when,
+      notes: form.notes,
+    });
 
-    window.open(getSmsUrl(lines.join("\n")), "_blank");
+    window.open(getSmsUrl(message), "_blank");
     setSubmitted(true);
   };
 
@@ -178,17 +117,17 @@ const Order = () => {
           <div className="text-center mb-12">
             <span className="inline-flex items-center gap-2 text-sm font-semibold text-sage uppercase tracking-[0.2em] mb-4">
               <span className="w-8 h-px bg-sage/40" />
-              Place Your Order
+              {COPY.eyebrow}
               <span className="w-8 h-px bg-sage/40" />
             </span>
             <h1 className="font-serif text-3xl md:text-5xl font-bold text-foreground mb-4">
-              Build your order — we'll bake it fresh.
+              {COPY.title}
             </h1>
             <p className="text-muted-foreground text-lg max-w-md mx-auto font-light">
-              Pick what you'd like and tell us how to reach you.
+              {COPY.subtitle}
             </p>
             <p className="text-xs text-muted-foreground/80 mt-3 max-w-md mx-auto">
-              Orders accepted Friday–Sunday · Limited each week and may close once we sell out
+              {COPY.windowNote}
             </p>
           </div>
 
@@ -198,10 +137,10 @@ const Order = () => {
                 <Check size={32} />
               </div>
               <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-3">
-                Thank you! We'll text or call you shortly to confirm your order.
+                {COPY.successTitle}
               </h2>
               <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                No payment online — we'll confirm availability, pickup/shipping, and final details directly.
+                {COPY.successBody}
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <a
@@ -231,7 +170,7 @@ const Order = () => {
                 </div>
                 <div className="px-6 md:px-10 py-5 flex flex-wrap items-center justify-between gap-3 border-t border-border bg-background/40">
                   <p className="text-sm text-foreground/80">
-                    All cookies are <span className="font-semibold text-foreground">gluten-free</span>, baked fresh in small batches in Bethel, CT.
+                    All cookies are <span className="font-semibold text-foreground">gluten-free</span>, baked fresh in small batches in {PICKUP_LOCATION}.
                   </p>
                   <p className="text-xs text-muted-foreground">
                     Dairy-free / sugar-free available on request
@@ -248,10 +187,10 @@ const Order = () => {
                   <div className="flex items-end justify-between gap-4 flex-wrap">
                     <div>
                       <h2 className="font-serif text-xl md:text-2xl font-bold text-foreground">
-                        Choose your cookies
+                        {COPY.chooseHeading}
                       </h2>
                       <p className="text-xs text-muted-foreground mt-1">
-                        Tap + to add. Quantities update your order summary.
+                        {COPY.chooseHelper}
                       </p>
                     </div>
                   </div>
@@ -341,7 +280,7 @@ const Order = () => {
                 {/* Order summary */}
                 <section className="rounded-2xl border border-border bg-background/60 p-5">
                   <h3 className="font-serif text-lg font-bold text-foreground mb-3">
-                    Your Order
+                    {COPY.summaryHeading}
                   </h3>
                   {hasItems ? (
                     <div className="space-y-1">
@@ -380,23 +319,23 @@ const Order = () => {
                       </div>
                       <div className="border-t border-border/60 pt-3 mt-3 text-sm text-muted-foreground">
                         Fulfillment: <span className="text-foreground font-semibold">
-                          {form.fulfillment === "pickup" ? "Pickup in Bethel, CT" : "Shipping"}
+                          {form.fulfillment === "pickup" ? `Pickup in ${PICKUP_LOCATION}` : "Shipping"}
                         </span>
                       </div>
-                      {isLargeOrder && (
+                      {largeOrder && (
                         <p className="text-xs text-sage mt-3 font-medium bg-sage/5 border border-sage/20 rounded-lg px-3 py-2">
-                          This is a large order — we'll confirm details with you before baking.
+                          {COPY.largeOrderNote}
                         </p>
                       )}
                       {shippingBelowMinimum && (
                         <p className="text-xs text-toffee mt-3 font-semibold bg-toffee/5 border border-toffee/30 rounded-lg px-3 py-2">
-                          Shipping minimum not met. Shipping requires a minimum of ${SHIPPING_MINIMUM} in products.
+                          {COPY.shippingMinimumWarning(SHIPPING_MINIMUM)}
                         </p>
                       )}
                     </div>
                   ) : (
                     <p className="text-sm text-muted-foreground text-center py-4">
-                      Select products above to build your order.
+                      {COPY.summaryEmpty}
                     </p>
                   )}
                 </section>
@@ -475,8 +414,8 @@ const Order = () => {
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
                       {form.fulfillment === "pickup"
-                        ? "Pickup in Bethel, CT. No minimum order. We'll contact you to coordinate pickup details."
-                        : `Shipping is available. Minimum $${SHIPPING_MINIMUM} in products. Shipping cost is paid by the customer.`}
+                        ? COPY.pickupHelper
+                        : COPY.shippingHelper(SHIPPING_MINIMUM)}
                     </p>
                     {shippingBelowMinimum && (
                       <p className="text-xs text-toffee mt-2 font-semibold">
@@ -521,20 +460,20 @@ const Order = () => {
                     disabled={!hasItems || shippingBelowMinimum}
                     className="w-full inline-flex items-center justify-center gap-3 bg-sage hover:bg-sage/85 text-white px-10 py-4 rounded-full text-lg font-bold shadow-xl shadow-sage/30 hover:shadow-2xl hover:shadow-sage/40 transition-all duration-300 hover:-translate-y-0.5 ring-2 ring-sage/15 ring-offset-2 ring-offset-card disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:shadow-lg"
                   >
-                    Send Order Request
+                    {COPY.submitCta}
                   </button>
 
                   {!hasItems && (
                     <p className="text-center text-xs text-toffee mt-3 font-medium">
-                      Please add at least one item to your order.
+                      {COPY.emptyWarning}
                     </p>
                   )}
 
                   <p className="text-center text-xs text-muted-foreground mt-3">
-                    No payments online — we confirm availability, pickup/shipping, and final details directly.
+                    {COPY.noPaymentNote}
                   </p>
                   <p className="text-center text-xs text-muted-foreground/90 mt-1.5">
-                    Freshly baked in small batches in Connecticut · We reply within 30 minutes
+                    {COPY.bakedNote}
                   </p>
                 </div>
 
@@ -545,7 +484,7 @@ const Order = () => {
                   </p>
                   <div className="grid sm:grid-cols-3 gap-3">
                     <a
-                      href={getSmsUrl("Hi, I would like to place an order with The Bloom Oven.")}
+                      href={getSmsUrl(tenant.contact.defaultOrderMessage)}
                       className="inline-flex items-center justify-center gap-2 border border-sage/30 bg-sage/5 hover:bg-sage/10 text-sage px-5 py-3 rounded-full text-sm font-semibold transition-colors"
                     >
                       <MessageSquare size={16} /> Text Us

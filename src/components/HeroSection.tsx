@@ -1,18 +1,22 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroCookies from "@/assets/hero-cookies.jpg";
+import { tenant } from "@/core/tenant/tenant";
 
 const AnnouncementBar = () => {
   return (
     <div className="bg-sage text-white text-center py-2.5 px-4">
       <p className="text-sm font-semibold tracking-wide">
-        Freshly baked weekly — limited batches, order before we sell out
+        {tenant.content.announcementBar}
       </p>
     </div>
   );
 };
 
 const HeroSection = () => {
+  const hero = tenant.content.hero;
+  const descriptionLines = hero.description.split("\n");
+
   return (
     <>
       <AnnouncementBar />
@@ -35,36 +39,39 @@ const HeroSection = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-sage/30 bg-sage/10">
               <span className="w-2 h-2 rounded-full bg-sage animate-pulse-soft" />
               <span className="text-xs font-medium text-sage tracking-wide uppercase">
-                Gluten-Free · Dairy-Free · Refined Sugar-Free
+                {hero.eyebrow}
               </span>
             </div>
 
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-foreground drop-shadow-sm">
-              Freshly Baked Cookies.
+              {hero.titleLine1}
               <br />
-              <span className="text-toffee">Limited Batches Every Week.</span>
+              <span className="text-toffee">{hero.titleLine2}</span>
             </h1>
 
             <p className="text-lg text-muted-foreground max-w-md mb-4 leading-relaxed font-light">
-              The 6-Cookie Box — Chocolate Chip, Red Velvet & Pistachio.
-              <br />
-              2 of each, handcrafted in Connecticut.
+              {descriptionLines.map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < descriptionLines.length - 1 && <br />}
+                </span>
+              ))}
             </p>
 
             <p className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-8">
-              $42 <span className="text-base font-sans font-normal text-muted-foreground">/ box</span>
+              {hero.pricePrefix} <span className="text-base font-sans font-normal text-muted-foreground">{hero.priceSuffix}</span>
             </p>
 
             <Link
               to="/order"
               className="inline-flex items-center gap-3 bg-sage hover:bg-sage/85 text-white px-12 py-5 rounded-full text-lg font-bold shadow-xl shadow-sage/30 hover:shadow-2xl hover:shadow-sage/40 transition-all duration-300 hover:-translate-y-1 ring-2 ring-sage/20 ring-offset-2 ring-offset-cream"
             >
-              Order Now
+              {hero.ctaPrimary}
               <ArrowRight size={22} />
             </Link>
 
             <p className="mt-4 text-sm text-muted-foreground font-light">
-              We reply within 30 minutes · No apps, no accounts
+              {hero.ctaSecondary}
             </p>
           </div>
 
@@ -73,7 +80,7 @@ const HeroSection = () => {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-foreground/10 border border-border">
               <img
                 src={heroCookies}
-                alt="The Bloom Oven 6-Cookie Box: Chocolate Chip, Red Velvet, Pistachio"
+                alt={`${tenant.business.name} 6-Cookie Box: Chocolate Chip, Red Velvet, Pistachio`}
                 width={1920}
                 height={1080}
                 className="w-full h-auto"

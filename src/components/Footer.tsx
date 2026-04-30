@@ -1,6 +1,7 @@
 import { Instagram, Facebook, Phone, MessageCircle, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { tenant } from "@/core/tenant/tenant";
 
 const Footer = () => {
   return (
@@ -8,21 +9,21 @@ const Footer = () => {
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
           <div className="text-center md:text-left">
-            <img src={logo} alt="The Bloom Oven" className="h-10 mx-auto md:mx-0 mb-3 brightness-150" />
+            <img src={logo} alt={tenant.business.name} className="h-10 mx-auto md:mx-0 mb-3 brightness-150" />
             <p className="text-sm text-background/50">
-              Licensed Home Bakery
+              {tenant.content.footer.tagline}
             </p>
             <p className="text-sm text-background/50">
-              Bethel, CT
+              {tenant.business.pickupLocation}
             </p>
-            <a href="mailto:thebloomoven@gmail.com" className="text-sm text-sage hover:underline mt-1 inline-block">
-              thebloomoven@gmail.com
+            <a href={`mailto:${tenant.contact.email}`} className="text-sm text-sage hover:underline mt-1 inline-block">
+              {tenant.contact.email}
             </a>
           </div>
 
           <div className="flex items-center gap-5">
             <a
-              href={getWhatsAppUrl("Hi, I would like to place an order with The Bloom Oven.")}
+              href={getWhatsAppUrl(tenant.contact.defaultOrderMessage)}
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/30 hover:text-sage transition-colors"
@@ -31,7 +32,7 @@ const Footer = () => {
               <MessageCircle size={22} />
             </a>
             <a
-              href="https://instagram.com/thebloomoven"
+              href={tenant.contact.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/30 hover:text-sage transition-colors"
@@ -40,7 +41,7 @@ const Footer = () => {
               <Instagram size={22} />
             </a>
             <a
-              href="https://facebook.com/thebloomoven"
+              href={tenant.contact.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/30 hover:text-sage transition-colors"
@@ -49,7 +50,7 @@ const Footer = () => {
               <Facebook size={22} />
             </a>
             <a
-              href="tel:+14752569577"
+              href={`tel:+${tenant.contact.phoneE164}`}
               className="text-background/30 hover:text-sage transition-colors"
               aria-label="Call us"
             >
@@ -60,7 +61,7 @@ const Footer = () => {
 
         <div className="mt-10 pt-6 border-t border-background/10 text-center">
           <p className="text-xs text-background/30">
-            © {new Date().getFullYear()} The Bloom Oven. All rights reserved.
+            © {new Date().getFullYear()} {tenant.business.name}. All rights reserved.
           </p>
         </div>
       </div>
