@@ -248,21 +248,26 @@ const Order = () => {
                       return (
                         <li
                           key={p.id}
-                          className={`rounded-2xl border p-4 md:p-5 transition-colors ${
+                          className={`rounded-2xl border p-4 md:p-5 transition-colors relative ${
                             p.highlight
-                              ? "border-sage/40 bg-sage/[0.04]"
+                              ? "border-2 border-sage/60 bg-sage/[0.06] shadow-md shadow-sage/10"
                               : "border-border bg-background/60"
                           }`}
                         >
+                          {p.highlight && (
+                            <span className="absolute -top-3 left-5 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-sage text-white text-[10px] font-bold uppercase tracking-wider shadow-sm shadow-sage/30">
+                              <Star size={10} className="fill-white" /> Most Popular
+                            </span>
+                          )}
                           <div className="flex items-start gap-4">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <h3 className="font-serif text-lg font-bold text-foreground">
+                                <h3 className={`font-serif font-bold text-foreground ${p.highlight ? "text-xl md:text-2xl" : "text-lg"}`}>
                                   {p.name}
                                 </h3>
                                 {p.highlight && (
                                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-sage/15 text-sage text-[10px] font-bold uppercase tracking-wide">
-                                    <Star size={10} className="fill-sage" /> Signature
+                                    Signature Box
                                   </span>
                                 )}
                               </div>
@@ -270,11 +275,11 @@ const Order = () => {
                                 {p.description}
                               </p>
                               {p.note && (
-                                <p className="text-xs text-sage/90 mt-2 font-medium">
+                                <p className="text-xs text-sage/90 mt-2 font-medium italic">
                                   {p.note}
                                 </p>
                               )}
-                              <p className="font-serif text-xl font-bold text-foreground mt-3 tabular-nums">
+                              <p className={`font-serif font-bold text-foreground mt-3 tabular-nums ${p.highlight ? "text-2xl md:text-3xl" : "text-xl"}`}>
                                 ${p.price}
                               </p>
                             </div>
