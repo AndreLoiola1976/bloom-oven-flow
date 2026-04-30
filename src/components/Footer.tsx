@@ -1,6 +1,6 @@
 import { Instagram, Facebook, Phone, MessageCircle, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppUrl } from "@/lib/tenantContact";
 import { tenant } from "@/core/tenant/tenant";
 
 const Footer = () => {

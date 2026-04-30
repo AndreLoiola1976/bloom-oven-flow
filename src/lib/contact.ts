@@ -1,9 +1,9 @@
-import { tenant } from "@/core/tenant/tenant";
+import type { ContactInfo } from "@/core/tenant/tenant.types";
 
-export const US_PHONE = tenant.contact.phoneE164;
-export const US_PHONE_DISPLAY = tenant.contact.phoneDisplay;
+// Pure builders — no tenant import. Pass contact data in explicitly,
+// or use the bound helpers from src/lib/tenantContact.ts.
+export const buildSmsUrl = (contact: ContactInfo, body: string) =>
+  `sms:+${contact.phoneE164}?&body=${encodeURIComponent(body)}`;
 
-export const getSmsUrl = (body: string) =>
-  `sms:+${US_PHONE}?&body=${encodeURIComponent(body)}`;
-
-export const getTelUrl = () => `tel:+${US_PHONE}`;
+export const buildTelUrl = (contact: ContactInfo) =>
+  `tel:+${contact.phoneE164}`;
