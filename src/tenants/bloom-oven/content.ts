@@ -13,6 +13,11 @@ export const content: Content = {
     priceSuffix: "/ box",
     ctaPrimary: "Order Now",
     ctaSecondary: "We reply within 30 minutes · No apps, no accounts",
+    backgroundImageAlt:
+      "Freshly baked chocolate chip, red velvet, and pistachio cookies",
+    productImageAlt: (businessName) =>
+      `${businessName} 6-Cookie Box: Chocolate Chip, Red Velvet, Pistachio`,
+    badges: ["Allergen-Friendly", "Made Fresh Weekly"],
   },
   finalCta: {
     titleLine1: "Ready to Taste",
