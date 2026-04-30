@@ -326,21 +326,21 @@ const Order = () => {
 
                 {/* Order summary */}
                 <section className="rounded-2xl border border-border bg-background/60 p-5">
-                  <h3 className="text-xs font-semibold text-foreground/70 uppercase tracking-wide mb-3">
-                    Order Summary
+                  <h3 className="font-serif text-lg font-bold text-foreground mb-3">
+                    Your Order
                   </h3>
                   {hasItems ? (
                     <div className="space-y-2">
                       {lineItems.map((i) => (
                         <div
                           key={i.id}
-                          className="flex items-center justify-between text-sm"
+                          className="flex items-center justify-between text-sm gap-4"
                         >
                           <span className="text-foreground/80">
-                            {i.qty} × {i.name}
+                            {i.name} × {i.qty}
                           </span>
-                          <span className="text-foreground tabular-nums font-medium">
-                            ${i.qty * i.price}
+                          <span className="text-foreground tabular-nums font-medium whitespace-nowrap">
+                            — ${i.qty * i.price}
                           </span>
                         </div>
                       ))}
@@ -349,7 +349,7 @@ const Order = () => {
                           Subtotal
                         </span>
                         <span className="font-serif text-2xl font-bold text-foreground tabular-nums">
-                          ${subtotal}
+                          — ${subtotal}
                         </span>
                       </div>
                     </div>
