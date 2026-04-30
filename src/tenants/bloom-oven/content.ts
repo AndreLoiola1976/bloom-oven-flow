@@ -120,7 +120,6 @@ export const content: Content = {
     ],
   },
   header: {
-    logoAlt: "The Bloom Oven",
     homeAriaLabel: "The Bloom Oven — Home",
     navMenu: "Menu",
     navAbout: "About",
