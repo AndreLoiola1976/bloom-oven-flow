@@ -1,37 +1,25 @@
 import { Star } from "lucide-react";
-
-const reviews = [
-  {
-    name: "Sarah M.",
-    text: "I can't believe these are gluten-free! The chocolate chip cookies are absolutely incredible. My kids couldn't tell the difference.",
-  },
-  {
-    name: "Jessica R.",
-    text: "Ordered a birthday cake for my daughter and it was stunning. The ordering process was so easy — just a quick WhatsApp chat!",
-  },
-  {
-    name: "Amanda L.",
-    text: "Finally, a bakery that understands dietary needs without sacrificing flavor. The cupcakes were gone in minutes at our party.",
-  },
-];
+import { tenant } from "@/core/tenant/tenant";
 
 const Testimonials = () => {
+  const copy = tenant.content.testimonials;
+
   return (
     <section className="py-20 md:py-28 bg-card">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-14">
           <span className="inline-flex items-center gap-2 text-sm font-semibold text-sage uppercase tracking-[0.2em] mb-4">
             <span className="w-8 h-px bg-sage/40" />
-            Real Reviews
+            {copy.eyebrow}
             <span className="w-8 h-px bg-sage/40" />
           </span>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground">
-            What Our Customers Say
+            {copy.title}
           </h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {reviews.map((r) => (
+          {copy.reviews.map((r) => (
             <div
               key={r.name}
               className="bg-background rounded-2xl border border-border p-8 shadow-sm"

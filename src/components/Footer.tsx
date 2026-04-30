@@ -1,9 +1,11 @@
-import { Instagram, Facebook, Phone, MessageCircle, Mail } from "lucide-react";
+import { Instagram, Facebook, Phone, MessageCircle } from "lucide-react";
 import logo from "@/assets/logo.png";
-import { getWhatsAppUrl } from "@/lib/tenantContact";
+import { getWhatsAppUrl, getTelUrl } from "@/lib/tenantContact";
 import { tenant } from "@/core/tenant/tenant";
 
 const Footer = () => {
+  const copy = tenant.content.footer;
+
   return (
     <footer className="py-14 bg-foreground border-t border-foreground/10">
       <div className="container mx-auto px-4 max-w-5xl">
@@ -11,7 +13,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <img src={logo} alt={tenant.business.name} className="h-10 mx-auto md:mx-0 mb-3 brightness-150" />
             <p className="text-sm text-background/50">
-              {tenant.content.footer.tagline}
+              {copy.tagline}
             </p>
             <p className="text-sm text-background/50">
               {tenant.business.pickupLocation}
@@ -27,7 +29,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/30 hover:text-sage transition-colors"
-              aria-label="WhatsApp"
+              aria-label={copy.whatsAppAriaLabel}
             >
               <MessageCircle size={22} />
             </a>
@@ -36,7 +38,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/30 hover:text-sage transition-colors"
-              aria-label="Instagram"
+              aria-label={copy.instagramAriaLabel}
             >
               <Instagram size={22} />
             </a>
@@ -45,14 +47,14 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/30 hover:text-sage transition-colors"
-              aria-label="Facebook"
+              aria-label={copy.facebookAriaLabel}
             >
               <Facebook size={22} />
             </a>
             <a
-              href={`tel:+${tenant.contact.phoneE164}`}
+              href={getTelUrl()}
               className="text-background/30 hover:text-sage transition-colors"
-              aria-label="Call us"
+              aria-label={copy.callAriaLabel}
             >
               <Phone size={22} />
             </a>
@@ -61,7 +63,7 @@ const Footer = () => {
 
         <div className="mt-10 pt-6 border-t border-background/10 text-center">
           <p className="text-xs text-background/30">
-            © {new Date().getFullYear()} {tenant.business.name}. All rights reserved.
+            {copy.copyright(new Date().getFullYear(), tenant.business.name)}
           </p>
         </div>
       </div>
@@ -70,3 +72,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

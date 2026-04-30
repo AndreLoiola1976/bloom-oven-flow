@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
+import { tenant } from "@/core/tenant/tenant";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const copy = tenant.content.header;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -36,14 +38,14 @@ const Header = () => {
       <div className="container mx-auto flex items-center justify-between py-3 md:py-4 px-4 md:px-8">
         <Link
           to="/"
-          aria-label="The Bloom Oven — Home"
+          aria-label={copy.homeAriaLabel}
           className={`transition-all duration-300 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 ${
             scrolled
               ? ""
               : "bg-cream/40 backdrop-blur-sm px-3 py-1"
           }`}
         >
-          <img src={logo} alt="The Bloom Oven" className="h-12 md:h-14" />
+          <img src={logo} alt={copy.logoAlt} className="h-12 md:h-14" />
         </Link>
 
         <nav className="flex items-center gap-6">
@@ -51,20 +53,20 @@ const Header = () => {
             onClick={() => scrollTo("menu")}
             className={`hidden md:block text-sm font-medium transition-colors ${navLinkClass}`}
           >
-            Menu
+            {copy.navMenu}
           </button>
           <button
             onClick={() => scrollTo("about")}
             className={`hidden md:block text-sm font-medium transition-colors ${navLinkClass}`}
           >
-            About
+            {copy.navAbout}
           </button>
           <a
-            href="https://instagram.com/thebloomoven"
+            href={tenant.contact.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={`transition-colors ${iconClass}`}
-            aria-label="Follow us on Instagram"
+            aria-label={copy.instagramAriaLabel}
           >
             <Instagram size={20} />
           </a>
