@@ -474,23 +474,28 @@ const Order = () => {
                   </div>
                 </section>
 
-                <button
-                  type="submit"
-                  disabled={!hasItems}
-                  className="w-full inline-flex items-center justify-center gap-3 bg-sage hover:bg-sage/85 text-white px-10 py-4 rounded-full text-lg font-bold shadow-xl shadow-sage/30 hover:shadow-2xl hover:shadow-sage/40 transition-all duration-300 hover:-translate-y-0.5 ring-2 ring-sage/15 ring-offset-2 ring-offset-card disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:shadow-lg"
-                >
-                  Send Order Request
-                </button>
+                <div>
+                  <button
+                    type="submit"
+                    disabled={!hasItems || shippingBelowMinimum}
+                    className="w-full inline-flex items-center justify-center gap-3 bg-sage hover:bg-sage/85 text-white px-10 py-4 rounded-full text-lg font-bold shadow-xl shadow-sage/30 hover:shadow-2xl hover:shadow-sage/40 transition-all duration-300 hover:-translate-y-0.5 ring-2 ring-sage/15 ring-offset-2 ring-offset-card disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:shadow-lg"
+                  >
+                    Send Order Request
+                  </button>
 
-                {!hasItems && (
-                  <p className="text-center text-xs text-muted-foreground -mt-3">
-                    Add at least one product to send your request.
+                  {!hasItems && (
+                    <p className="text-center text-xs text-toffee mt-3 font-medium">
+                      Please add at least one item to your order.
+                    </p>
+                  )}
+
+                  <p className="text-center text-xs text-muted-foreground mt-3">
+                    No payments online — we confirm availability, pickup/shipping, and final details directly.
                   </p>
-                )}
-
-                <p className="text-center text-xs text-muted-foreground">
-                  We reply within 30 minutes · No payments online — we confirm availability and details directly
-                </p>
+                  <p className="text-center text-xs text-muted-foreground/90 mt-1.5">
+                    Freshly baked in small batches in Connecticut · We reply within 30 minutes
+                  </p>
+                </div>
 
                 {/* Alternative CTAs */}
                 <div className="pt-6 border-t border-border">
