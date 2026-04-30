@@ -1,5 +1,5 @@
 import { MessageCircle } from "lucide-react";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppUrl } from "@/lib/tenantContact";
 
 const WhatsAppButton = () => {
   return (

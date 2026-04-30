@@ -1,6 +1,6 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppUrl } from "@/lib/tenantContact";
 import { tenant } from "@/core/tenant/tenant";
 
 const FinalCTA = () => {

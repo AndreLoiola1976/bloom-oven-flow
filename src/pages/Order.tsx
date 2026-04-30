@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, MessageSquare, Phone, MessageCircle, Check, Minus, Plus, Mail, Star } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
-import { getSmsUrl, getTelUrl, US_PHONE_DISPLAY } from "@/lib/contact";
+import { getWhatsAppUrl, getSmsUrl, getTelUrl, US_PHONE_DISPLAY } from "@/lib/tenantContact";
 import heroCookies from "@/assets/hero-cookies.jpg";
 import { tenant } from "@/core/tenant/tenant";
 import {
