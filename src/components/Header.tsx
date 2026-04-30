@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const Header = () => {
@@ -33,15 +34,17 @@ const Header = () => {
       style={{ top: scrolled ? 0 : '40px' }}
     >
       <div className="container mx-auto flex items-center justify-between py-3 md:py-4 px-4 md:px-8">
-        <div
-          className={`transition-all duration-300 ${
+        <Link
+          to="/"
+          aria-label="The Bloom Oven — Home"
+          className={`transition-all duration-300 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 ${
             scrolled
               ? ""
-              : "bg-cream/40 backdrop-blur-sm rounded-full px-3 py-1"
+              : "bg-cream/40 backdrop-blur-sm px-3 py-1"
           }`}
         >
           <img src={logo} alt="The Bloom Oven" className="h-12 md:h-14" />
-        </div>
+        </Link>
 
         <nav className="flex items-center gap-6">
           <button

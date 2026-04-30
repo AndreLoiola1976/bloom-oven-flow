@@ -94,6 +94,20 @@ const Order = () => {
   const hasItems = lineItems.length > 0;
   const shippingBelowMinimum =
     form.fulfillment === "shipping" && hasItems && subtotal < SHIPPING_MINIMUM;
+  const isLargeOrder = subtotal >= 100;
+
+  // subtle highlight pulse on subtotal change
+  const [subtotalPulse, setSubtotalPulse] = useState(false);
+  const firstRunRef = useRef(true);
+  useEffect(() => {
+    if (firstRunRef.current) {
+      firstRunRef.current = false;
+      return;
+    }
+    setSubtotalPulse(true);
+    const t = setTimeout(() => setSubtotalPulse(false), 450);
+    return () => clearTimeout(t);
+  }, [subtotal]);
 
   const setQty = (id: string, next: number) => {
     setQuantities((q) => ({ ...q, [id]: Math.max(0, next) }));
@@ -330,28 +344,50 @@ const Order = () => {
                     Your Order
                   </h3>
                   {hasItems ? (
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                       {lineItems.map((i) => (
                         <div
                           key={i.id}
-                          className="flex items-center justify-between text-sm gap-4"
+                          className="flex items-baseline gap-2 text-sm py-1.5"
                         >
-                          <span className="text-foreground/80">
-                            {i.name} × {i.qty}
+                          <span className="font-semibold text-foreground shrink-0">
+                            {i.name} <span className="text-muted-foreground font-normal">× {i.qty}</span>
                           </span>
-                          <span className="text-foreground tabular-nums font-medium whitespace-nowrap">
-                            — ${i.qty * i.price}
+                          <span
+                            aria-hidden="true"
+                            className="flex-1 border-b border-dotted border-border/70 translate-y-[-3px]"
+                          />
+                          <span className="text-foreground tabular-nums font-semibold whitespace-nowrap">
+                            ${i.qty * i.price}
                           </span>
                         </div>
                       ))}
-                      <div className="border-t border-border pt-3 mt-3 flex items-center justify-between">
-                        <span className="text-sm font-semibold text-foreground">
+                      <div className="border-t border-border pt-3 mt-3 flex items-baseline gap-2">
+                        <span className="text-base font-bold text-foreground shrink-0">
                           Subtotal
                         </span>
-                        <span className="font-serif text-2xl font-bold text-foreground tabular-nums">
-                          — ${subtotal}
+                        <span
+                          aria-hidden="true"
+                          className="flex-1 border-b border-dotted border-border/70 translate-y-[-3px]"
+                        />
+                        <span
+                          className={`font-serif text-2xl font-bold text-foreground tabular-nums whitespace-nowrap transition-all duration-300 ${
+                            subtotalPulse ? "text-sage scale-105" : ""
+                          }`}
+                        >
+                          ${subtotal}
                         </span>
                       </div>
+                      {isLargeOrder && (
+                        <p className="text-xs text-sage mt-3 font-medium bg-sage/5 border border-sage/20 rounded-lg px-3 py-2">
+                          This is a large order — we'll confirm details with you before baking.
+                        </p>
+                      )}
+                      {shippingBelowMinimum && (
+                        <p className="text-xs text-toffee mt-3 font-semibold bg-toffee/5 border border-toffee/30 rounded-lg px-3 py-2">
+                          Shipping requires a minimum of ${SHIPPING_MINIMUM} in products.
+                        </p>
+                      )}
                     </div>
                   ) : (
                     <p className="text-sm text-muted-foreground text-center py-4">
