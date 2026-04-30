@@ -1,8 +1,8 @@
-const PHONE = "14752569577";
+import { tenant } from "@/core/tenant/tenant";
 
 // Secondary contact only. Clean ASCII message — no emojis or invalid chars.
 export function getWhatsAppUrl(
-  message: string = "Hi, I would like to place an order with The Bloom Oven."
+  message: string = tenant.contact.defaultOrderMessage
 ): string {
-  return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${tenant.contact.phoneE164}?text=${encodeURIComponent(message)}`;
 }
