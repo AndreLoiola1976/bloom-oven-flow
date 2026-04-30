@@ -6,7 +6,7 @@ const AnnouncementBar = () => {
   return (
     <div className="bg-sage text-white text-center py-2.5 px-4">
       <p className="text-sm font-semibold tracking-wide">
-        🔥 Limited batches every week — order before we sell out
+        Freshly baked weekly — limited batches, order before we sell out
       </p>
     </div>
   );
