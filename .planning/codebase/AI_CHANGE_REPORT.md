@@ -37,6 +37,40 @@ Running log of non-trivial migration steps. Newest entries on top. Each entry MU
 
 ---
 
+## 2026-04-30 — Refactor step: Footer logo alt consolidation
+
+**Scope**: Eliminate duplicate sources of truth for the logo `alt` attribute.
+
+**Files modified**:
+- `src/core/tenant/tenant.types.ts`
+- `src/tenants/bloom-oven/content.ts`
+- `src/components/Header.tsx`
+- `src/components/Footer.tsx`
+
+**Canonical field chosen**: `tenant.content.logoAlt: string` (top-level on `Content`).
+
+Rationale: top-level avoids coupling either `Header` or `Footer` to the other surface's contract section, and matches the fact that the logo asset is shared across surfaces.
+
+**Contract changes**:
+- Added `Content.logoAlt: string`.
+- Removed `Content.header.logoAlt`.
+
+**Duplication removed**:
+- `Footer.tsx` previously rendered `alt={tenant.business.name}`; `Header.tsx` rendered `alt={tenant.content.header.logoAlt}`. Both now read from the single canonical `tenant.content.logoAlt`.
+
+**Component changes**:
+- `Header.tsx`: `alt={copy.logoAlt}` → `alt={tenant.content.logoAlt}`.
+- `Footer.tsx`: `alt={tenant.business.name}` → `alt={tenant.content.logoAlt}`.
+
+**Remaining tech debt**:
+- `index.html` metadata still hardcoded.
+
+**Validation**:
+- TypeScript build: **pass** (`tsc --noEmit` exit 0)
+- Visual unchanged: yes — both alts resolve to `"The Bloom Oven"` for the active tenant, identical to prior rendered output.
+
+---
+
 ## 2026-04-30 — Refactor step: HeroSection literals
 
 **Scope**: Move HeroSection user-facing strings (badges + image alts) into the tenant content contract.
