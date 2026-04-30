@@ -163,7 +163,7 @@ const Order = () => {
                 <div className="aspect-[16/7] overflow-hidden">
                   <img
                     src={heroCookies}
-                    alt="Freshly baked gluten-free cookies from The Bloom Oven"
+                    alt={COPY.heroImageAlt}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -210,7 +210,7 @@ const Order = () => {
                         >
                           {p.highlight && (
                             <span className="absolute -top-3 left-5 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-sage text-white text-[10px] font-bold uppercase tracking-wider shadow-sm shadow-sage/30">
-                              <Star size={10} className="fill-white" /> Most Popular
+                              <Star size={10} className="fill-white" /> {COPY.mostPopularBadge}
                             </span>
                           )}
                           <div className="flex items-start gap-4">
@@ -221,7 +221,7 @@ const Order = () => {
                                 </h3>
                                 {p.highlight && (
                                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-sage/15 text-sage text-[10px] font-bold uppercase tracking-wide">
-                                    Signature Box
+                                    {COPY.signatureBoxBadge}
                                   </span>
                                 )}
                               </div>
@@ -304,7 +304,7 @@ const Order = () => {
                       ))}
                       <div className="border-t border-border pt-3 mt-3 flex items-baseline gap-2">
                         <span className="text-base font-bold text-foreground shrink-0">
-                          Subtotal
+                          {COPY.subtotalLabel}
                         </span>
                         <span
                           aria-hidden="true"

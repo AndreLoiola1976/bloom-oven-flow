@@ -32,7 +32,7 @@ const FinalCTA = () => {
             className="inline-flex items-center gap-2 border border-sage/30 bg-background hover:bg-sage/5 text-sage px-6 py-4 rounded-full text-sm font-semibold transition-colors"
           >
             <MessageCircle size={18} />
-            WhatsApp
+            {cta.whatsAppLabel}
           </a>
         </div>
       </div>
