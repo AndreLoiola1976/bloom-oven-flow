@@ -49,8 +49,8 @@ export const content: Content = {
     fulfillmentShipping: "Shipping",
     largeOrderNote:
       "This is a large order — we'll confirm details with you before baking.",
-    pickupHelper:
-      "Pickup in Bethel, CT. No minimum order. We'll contact you to coordinate pickup details.",
+    pickupHelper: (pickupLocation) =>
+      `Pickup in ${pickupLocation}. No minimum order. We'll contact you to coordinate pickup details.`,
     shippingHelper: (min) =>
       `Shipping is available. Minimum $${min} in products. Shipping cost is paid by the customer.`,
     shippingMinimumWarning: (min) =>

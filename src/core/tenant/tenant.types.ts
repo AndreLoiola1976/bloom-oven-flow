@@ -87,7 +87,7 @@ export type Content = {
     fulfillmentPickup: (location: string) => string;
     fulfillmentShipping: string;
     largeOrderNote: string;
-    pickupHelper: string;
+    pickupHelper: (pickupLocation: string) => string;
     shippingHelper: (min: number) => string;
     shippingMinimumWarning: (min: number) => string;
     shippingMinimumInline: (min: number) => string;
