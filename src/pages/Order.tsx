@@ -434,11 +434,11 @@ const Order = () => {
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
                       {form.fulfillment === "pickup"
-                        ? "Pickup in Bethel/Danbury, CT — please order at least 24 hours in advance. Same-day pickup may be available."
-                        : `Shipping cost is paid by the customer. Minimum $${SHIPPING_MINIMUM} in products required.`}
+                        ? "Pickup in Bethel/Danbury area. No minimum order. Please order at least 24 hours in advance."
+                        : `Shipping is available. Minimum $${SHIPPING_MINIMUM} in products. Shipping cost is paid by the customer.`}
                     </p>
                     {shippingBelowMinimum && (
-                      <p className="text-xs text-toffee mt-2 font-medium">
+                      <p className="text-xs text-toffee mt-2 font-semibold">
                         Shipping requires a minimum of ${SHIPPING_MINIMUM} in products.
                       </p>
                     )}
