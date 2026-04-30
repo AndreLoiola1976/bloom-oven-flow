@@ -53,7 +53,7 @@ const HowItWorks = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-sage mt-0.5">•</span>
-                <strong className="text-foreground">5 Grand St, Connecticut</strong>
+                <strong className="text-foreground">Bethel, CT</strong>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-sage mt-0.5">•</span>

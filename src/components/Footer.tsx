@@ -13,7 +13,7 @@ const Footer = () => {
               Licensed Home Bakery
             </p>
             <p className="text-sm text-background/50">
-              5 Grand St, Connecticut
+              Bethel, CT
             </p>
             <a href="mailto:thebloomoven@gmail.com" className="text-sm text-sage hover:underline mt-1 inline-block">
               thebloomoven@gmail.com

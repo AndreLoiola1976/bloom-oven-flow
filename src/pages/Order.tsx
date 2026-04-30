@@ -231,7 +231,7 @@ const Order = () => {
                 </div>
                 <div className="px-6 md:px-10 py-5 flex flex-wrap items-center justify-between gap-3 border-t border-border bg-background/40">
                   <p className="text-sm text-foreground/80">
-                    All cookies are <span className="font-semibold text-foreground">gluten-free</span>, baked fresh in small batches in Bethel/Danbury, CT.
+                    All cookies are <span className="font-semibold text-foreground">gluten-free</span>, baked fresh in small batches in Bethel, CT.
                   </p>
                   <p className="text-xs text-muted-foreground">
                     Dairy-free / sugar-free available on request
@@ -378,6 +378,11 @@ const Order = () => {
                           ${subtotal}
                         </span>
                       </div>
+                      <div className="border-t border-border/60 pt-3 mt-3 text-sm text-muted-foreground">
+                        Fulfillment: <span className="text-foreground font-semibold">
+                          {form.fulfillment === "pickup" ? "Pickup in Bethel, CT" : "Shipping"}
+                        </span>
+                      </div>
                       {isLargeOrder && (
                         <p className="text-xs text-sage mt-3 font-medium bg-sage/5 border border-sage/20 rounded-lg px-3 py-2">
                           This is a large order — we'll confirm details with you before baking.
@@ -385,7 +390,7 @@ const Order = () => {
                       )}
                       {shippingBelowMinimum && (
                         <p className="text-xs text-toffee mt-3 font-semibold bg-toffee/5 border border-toffee/30 rounded-lg px-3 py-2">
-                          Shipping requires a minimum of ${SHIPPING_MINIMUM} in products.
+                          Shipping minimum not met. Shipping requires a minimum of ${SHIPPING_MINIMUM} in products.
                         </p>
                       )}
                     </div>
@@ -470,7 +475,7 @@ const Order = () => {
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
                       {form.fulfillment === "pickup"
-                        ? "Pickup in Bethel/Danbury area. No minimum order. Please order at least 24 hours in advance."
+                        ? "Pickup in Bethel, CT. No minimum order. We'll contact you to coordinate pickup details."
                         : `Shipping is available. Minimum $${SHIPPING_MINIMUM} in products. Shipping cost is paid by the customer.`}
                     </p>
                     {shippingBelowMinimum && (
