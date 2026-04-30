@@ -109,7 +109,7 @@ const Order = () => {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-sage transition-colors mb-8"
           >
             <ArrowLeft size={16} />
-            Back to home
+            {COPY.backToHome}
           </Link>
 
           {/* Header */}
@@ -146,13 +146,13 @@ const Order = () => {
                   href={getTelUrl()}
                   className="inline-flex items-center gap-2 bg-sage hover:bg-sage/90 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-sage/25 transition-all"
                 >
-                  <Phone size={16} /> Call {US_PHONE_DISPLAY}
+                  <Phone size={16} /> {COPY.successCallCta(US_PHONE_DISPLAY)}
                 </a>
                 <Link
                   to="/"
                   className="inline-flex items-center gap-2 border border-border bg-background hover:bg-accent text-foreground px-6 py-3 rounded-full text-sm font-medium transition-all"
                 >
-                  Back to home
+                  {COPY.successBackCta}
                 </Link>
               </div>
             </div>
@@ -169,10 +169,12 @@ const Order = () => {
                 </div>
                 <div className="px-6 md:px-10 py-5 flex flex-wrap items-center justify-between gap-3 border-t border-border bg-background/40">
                   <p className="text-sm text-foreground/80">
-                    All cookies are <span className="font-semibold text-foreground">gluten-free</span>, baked fresh in small batches in {PICKUP_LOCATION}.
+                    {COPY.heroOverlayLead}{" "}
+                    <span className="font-semibold text-foreground">{COPY.heroOverlayLeadEmphasis}</span>
+                    {COPY.heroOverlayLeadSuffix(PICKUP_LOCATION)}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    Dairy-free / sugar-free available on request
+                    {COPY.heroOverlayNote}
                   </p>
                 </div>
               </div>
@@ -272,7 +274,7 @@ const Order = () => {
                   </ul>
 
                   <p className="text-xs text-muted-foreground italic">
-                    Dairy-free or sugar-free? Add it to Order Notes — additional cost may apply.
+                    {COPY.customizationNote}
                   </p>
                 </section>
 
@@ -317,8 +319,11 @@ const Order = () => {
                         </span>
                       </div>
                       <div className="border-t border-border/60 pt-3 mt-3 text-sm text-muted-foreground">
-                        Fulfillment: <span className="text-foreground font-semibold">
-                          {form.fulfillment === "pickup" ? `Pickup in ${PICKUP_LOCATION}` : "Shipping"}
+                        {COPY.fulfillmentLabel}{" "}
+                        <span className="text-foreground font-semibold">
+                          {form.fulfillment === "pickup"
+                            ? COPY.fulfillmentPickup(PICKUP_LOCATION)
+                            : COPY.fulfillmentShipping}
                         </span>
                       </div>
                       {largeOrder && (
