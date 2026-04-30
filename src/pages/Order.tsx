@@ -242,7 +242,7 @@ const Order = () => {
                     </div>
                   </div>
 
-                  <ul className="space-y-3">
+                  <ul className="space-y-4 pt-3">
                     {PRODUCTS.map((p) => {
                       const qty = quantities[p.id] || 0;
                       return (
