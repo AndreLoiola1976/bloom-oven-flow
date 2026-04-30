@@ -1,5 +1,5 @@
-import { MessageCircle } from "lucide-react";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const cookies = [
   { name: "Chocolate Chip", emoji: "🍪", note: "Rich & gooey", accent: "bg-golden/10 border-golden/20" },
@@ -58,15 +58,13 @@ const OrderPaths = () => {
             <p className="text-muted-foreground mb-8 max-w-sm mx-auto">
               6 cookies of pure happiness. Perfect for gifting or treating yourself.
             </p>
-            <a
-              href={getWhatsAppUrl("Hi! I'd like to order the 6-Cookie Box ($42) 🍪\n\nDelivery or Pickup?\nDate needed: ")}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/order"
               className="inline-flex items-center gap-3 bg-sage hover:bg-sage/90 text-white px-10 py-4 rounded-full text-lg font-bold shadow-lg shadow-sage/25 hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
             >
-              <MessageCircle size={20} />
               Order This Box
-            </a>
+              <ArrowRight size={20} />
+            </Link>
             <p className="mt-4 text-xs text-muted-foreground">
               We reply within 30 minutes
             </p>
