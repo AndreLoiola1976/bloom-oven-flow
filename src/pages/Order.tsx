@@ -420,7 +420,7 @@ const Order = () => {
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
                       {form.fulfillment === "pickup"
-                        ? COPY.pickupHelper
+                        ? COPY.pickupHelper(PICKUP_LOCATION)
                         : COPY.shippingHelper(SHIPPING_MINIMUM)}
                     </p>
                     {shippingBelowMinimum && (
