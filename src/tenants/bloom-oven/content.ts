@@ -108,7 +108,87 @@ export const content: Content = {
       "Schedule via order form or text",
     ],
   },
+  header: {
+    logoAlt: "The Bloom Oven",
+    homeAriaLabel: "The Bloom Oven — Home",
+    navMenu: "Menu",
+    navAbout: "About",
+    instagramAriaLabel: "Follow us on Instagram",
+  },
+  brandStory: {
+    eyebrow: "Our Story",
+    titleLine1: "Born from Love,",
+    titleLine2: "Baked Without Compromise",
+    paragraph1:
+      "The Bloom Oven started with a simple belief: everyone deserves to enjoy beautiful bakes — even with dietary restrictions. We're a licensed home bakery in Connecticut, creating gluten-free, dairy-free, and refined sugar-free treats that taste like they have no compromises.",
+    paragraph2Lead:
+      "Every cookie, cake, and cupcake is handcrafted in small batches with wholesome ingredients and a whole lot of love. Because food should nourish your body ",
+    paragraph2Emphasis: "and",
+    paragraph2Tail: " your soul.",
+  },
+  testimonials: {
+    eyebrow: "Real Reviews",
+    title: "What Our Customers Say",
+    reviews: [
+      {
+        name: "Sarah M.",
+        text: "I can't believe these are gluten-free! The chocolate chip cookies are absolutely incredible. My kids couldn't tell the difference.",
+      },
+      {
+        name: "Jessica R.",
+        text: "Ordered a birthday cake for my daughter and it was stunning. The ordering process was so easy — just a quick WhatsApp chat!",
+      },
+      {
+        name: "Amanda L.",
+        text: "Finally, a bakery that understands dietary needs without sacrificing flavor. The cupcakes were gone in minutes at our party.",
+      },
+    ],
+  },
+  instagramSection: {
+    title: "Follow the Journey",
+    subtitle: "Fresh bakes, behind-the-scenes, and daily inspiration",
+    tiles: [
+      { bg: "bg-biscuit/30", emoji: "🍪" },
+      { bg: "bg-frosting/30", emoji: "🎂" },
+      { bg: "bg-dough", emoji: "🧁" },
+      { bg: "bg-sage/10", emoji: "🌿" },
+      { bg: "bg-golden/15", emoji: "🍰" },
+      { bg: "bg-card", emoji: "✨" },
+    ],
+  },
+  orderPaths: {
+    eyebrow: "Our Signature Box",
+    title: "The 6-Cookie Box",
+    subtitle:
+      "2 of each flavor — handcrafted, allergen-friendly, and impossible to resist.",
+    cookies: [
+      { name: "Chocolate Chip", emoji: "🍪", note: "Rich & gooey", accent: "bg-golden/10 border-golden/20" },
+      { name: "Red Velvet", emoji: "🔴", note: "Velvety & indulgent", accent: "bg-frosting/30 border-frosting/40" },
+      { name: "Pistachio", emoji: "💚", note: "Nutty & fragrant", accent: "bg-sage/10 border-sage/20" },
+    ],
+    perCookieMultiplier: "× 2",
+    badge: "Limited Batches",
+    pricePrefix: "$42",
+    priceSuffix: "/ box",
+    description:
+      "6 cookies of pure happiness. Perfect for gifting or treating yourself.",
+    cta: "Order This Box",
+    replyNote: "We reply within 30 minutes",
+  },
+  whatsAppButton: {
+    label: "Order Now",
+    ariaLabel: "Order on WhatsApp",
+  },
   footer: {
     tagline: "Licensed Home Bakery",
+    whatsAppAriaLabel: "WhatsApp",
+    instagramAriaLabel: "Instagram",
+    facebookAriaLabel: "Facebook",
+    callAriaLabel: "Call us",
+    copyright: (year, name) => `© ${year} ${name}. All rights reserved.`,
+  },
+  order: {
+    decreaseAriaLabel: (productName) => `Decrease ${productName}`,
+    increaseAriaLabel: (productName) => `Increase ${productName}`,
   },
 };

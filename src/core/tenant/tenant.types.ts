@@ -29,8 +29,10 @@ export type ContactInfo = {
   phoneE164: string; // digits only, no +
   phoneDisplay: string;
   instagramUrl: string;
+  instagramHandle: string; // e.g. "@thebloomoven"
   facebookUrl: string;
   defaultOrderMessage: string;
+  whatsAppFloatingMessage: string; // floating WhatsApp button default
 };
 
 export type ThemeTokens = {
@@ -127,8 +129,60 @@ export type Content = {
     shippingBullets: string[];
     pickupBullets: (pickup: string) => string[];
   };
+  header: {
+    logoAlt: string;
+    homeAriaLabel: string;
+    navMenu: string;
+    navAbout: string;
+    instagramAriaLabel: string;
+  };
+  brandStory: {
+    eyebrow: string;
+    titleLine1: string;
+    titleLine2: string;
+    paragraph1: string;
+    paragraph2Lead: string;
+    paragraph2Emphasis: string;
+    paragraph2Tail: string;
+  };
+  testimonials: {
+    eyebrow: string;
+    title: string;
+    reviews: { name: string; text: string }[];
+  };
+  instagramSection: {
+    title: string;
+    subtitle: string;
+    tiles: { bg: string; emoji: string }[];
+  };
+  orderPaths: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    cookies: { name: string; emoji: string; note: string; accent: string }[];
+    perCookieMultiplier: string;
+    badge: string;
+    pricePrefix: string;
+    priceSuffix: string;
+    description: string;
+    cta: string;
+    replyNote: string;
+  };
+  whatsAppButton: {
+    label: string;
+    ariaLabel: string;
+  };
   footer: {
     tagline: string;
+    whatsAppAriaLabel: string;
+    instagramAriaLabel: string;
+    facebookAriaLabel: string;
+    callAriaLabel: string;
+    copyright: (year: number, name: string) => string;
+  };
+  order: {
+    decreaseAriaLabel: (productName: string) => string;
+    increaseAriaLabel: (productName: string) => string;
   };
 };
 
