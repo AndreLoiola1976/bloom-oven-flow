@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, MessageSquare, Phone, MessageCircle, Check } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { getSmsUrl, getTelUrl, US_PHONE_DISPLAY } from "@/lib/contact";
 import heroCookies from "@/assets/hero-cookies.jpg";
@@ -262,7 +261,7 @@ const Order = () => {
                     <Phone size={16} /> Call Us
                   </a>
                   <a
-                    href={getWhatsAppUrl("Hi! I'd like to order the 6-Cookie Box ($42) 🍪")}
+                    href={getWhatsAppUrl("Hi, I would like to order the 6-Cookie Box ($42) from The Bloom Oven.")}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 border border-border bg-background hover:bg-accent text-foreground/70 px-5 py-3 rounded-full text-sm font-medium transition-colors"
@@ -277,7 +276,6 @@ const Order = () => {
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 };

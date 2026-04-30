@@ -24,7 +24,7 @@ const FinalCTA = () => {
             <ArrowRight size={20} />
           </Link>
           <a
-            href={getWhatsAppUrl("Hi! I'd love to order from The Bloom Oven 🌸")}
+            href={getWhatsAppUrl("Hi, I would like to place an order with The Bloom Oven.")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border border-sage/30 bg-background hover:bg-sage/5 text-sage px-6 py-4 rounded-full text-sm font-semibold transition-colors"

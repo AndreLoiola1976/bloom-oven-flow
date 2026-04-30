@@ -57,7 +57,7 @@ const HowItWorks = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-sage mt-0.5">•</span>
-                Schedule via WhatsApp
+                Schedule via order form or text
               </li>
             </ul>
           </div>

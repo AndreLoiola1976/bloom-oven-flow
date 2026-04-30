@@ -22,7 +22,7 @@ const Footer = () => {
 
           <div className="flex items-center gap-5">
             <a
-              href={getWhatsAppUrl("Hi! I'd like to place an order 🌸")}
+              href={getWhatsAppUrl("Hi, I would like to place an order with The Bloom Oven.")}
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/30 hover:text-sage transition-colors"
