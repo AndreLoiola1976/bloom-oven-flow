@@ -349,26 +349,26 @@ const Order = () => {
                   <div className="grid md:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-semibold text-foreground mb-2">
-                        Full Name
+                        {COPY.fields.nameLabel}
                       </label>
                       <input
                         type="text"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        placeholder="Jane Doe"
+                        placeholder={COPY.fields.namePlaceholder}
                         className="w-full h-11 rounded-full border border-border bg-background px-5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:border-sage/40 transition-colors"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-foreground mb-2">
-                        Phone Number <span className="text-sage">*</span>
+                        {COPY.fields.phoneLabel} <span className="text-sage">{COPY.fields.phoneRequiredMark}</span>
                       </label>
                       <input
                         type="tel"
                         required
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        placeholder="(555) 123-4567"
+                        placeholder={COPY.fields.phonePlaceholder}
                         className="w-full h-11 rounded-full border border-border bg-background px-5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:border-sage/40 transition-colors"
                       />
                     </div>
@@ -376,7 +376,7 @@ const Order = () => {
 
                   <div>
                     <label className="block text-sm font-semibold text-foreground mb-2">
-                      Preferred Contact Method
+                      {COPY.fields.contactMethodLabel}
                     </label>
                     <div className="grid grid-cols-2 gap-3">
                       {(["text", "call"] as const).map((opt) => (
@@ -390,7 +390,7 @@ const Order = () => {
                               : "bg-background border-border text-foreground/70 hover:border-sage/40"
                           }`}
                         >
-                          {opt === "text" ? "Text (SMS)" : "Call"}
+                          {opt === "text" ? COPY.fields.contactMethodText : COPY.fields.contactMethodCall}
                         </button>
                       ))}
                     </div>
@@ -398,7 +398,7 @@ const Order = () => {
 
                   <div>
                     <label className="block text-sm font-semibold text-foreground mb-2">
-                      Pickup or Shipping
+                      {COPY.fields.fulfillmentToggleLabel}
                     </label>
                     <div className="grid grid-cols-2 gap-3">
                       {(["pickup", "shipping"] as const).map((opt) => (
@@ -412,7 +412,9 @@ const Order = () => {
                               : "bg-background border-border text-foreground/70 hover:border-sage/40"
                           }`}
                         >
-                          {opt}
+                          {opt === "pickup"
+                            ? COPY.fields.fulfillmentPickupOption
+                            : COPY.fields.fulfillmentShippingOption}
                         </button>
                       ))}
                     </div>
@@ -423,27 +425,27 @@ const Order = () => {
                     </p>
                     {shippingBelowMinimum && (
                       <p className="text-xs text-toffee mt-2 font-semibold">
-                        Shipping requires a minimum of ${SHIPPING_MINIMUM} in products.
+                        {COPY.shippingMinimumInline(SHIPPING_MINIMUM)}
                       </p>
                     )}
                   </div>
 
                   <div>
                     <label className="block text-sm font-semibold text-foreground mb-2">
-                      Preferred Date / Time <span className="text-muted-foreground font-normal">(optional)</span>
+                      {COPY.fields.whenLabel} <span className="text-muted-foreground font-normal">{COPY.fields.whenOptional}</span>
                     </label>
                     <input
                       type="text"
                       value={form.when}
                       onChange={(e) => setForm({ ...form, when: e.target.value })}
-                      placeholder="e.g. Saturday afternoon"
+                      placeholder={COPY.fields.whenPlaceholder}
                       className="w-full h-11 rounded-full border border-border bg-background px-5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:border-sage/40 transition-colors"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-semibold text-foreground mb-2">
-                      Order Notes <span className="text-muted-foreground font-normal">(optional)</span>
+                      {COPY.fields.notesLabel} <span className="text-muted-foreground font-normal">{COPY.fields.notesOptional}</span>
                     </label>
                     <textarea
                       rows={4}
@@ -452,7 +454,7 @@ const Order = () => {
                         setNotesTouched(true);
                         setForm({ ...form, notes: e.target.value });
                       }}
-                      placeholder="Special requests, dairy-free/sugar-free request, delivery address if shipping, or other notes…"
+                      placeholder={COPY.fields.notesPlaceholder}
                       className="w-full rounded-2xl border border-border bg-background px-5 py-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:border-sage/40 transition-colors resize-none"
                     />
                   </div>
@@ -484,20 +486,20 @@ const Order = () => {
                 {/* Alternative CTAs */}
                 <div className="pt-6 border-t border-border">
                   <p className="text-center text-sm text-muted-foreground mb-4">
-                    Prefer to reach out directly?
+                    {COPY.altCtas.heading}
                   </p>
                   <div className="grid sm:grid-cols-3 gap-3">
                     <a
                       href={getSmsUrl(tenant.contact.defaultOrderMessage)}
                       className="inline-flex items-center justify-center gap-2 border border-sage/30 bg-sage/5 hover:bg-sage/10 text-sage px-5 py-3 rounded-full text-sm font-semibold transition-colors"
                     >
-                      <MessageSquare size={16} /> Text Us
+                      <MessageSquare size={16} /> {COPY.altCtas.text}
                     </a>
                     <a
                       href={getTelUrl()}
                       className="inline-flex items-center justify-center gap-2 border border-sage/30 bg-sage/5 hover:bg-sage/10 text-sage px-5 py-3 rounded-full text-sm font-semibold transition-colors"
                     >
-                      <Phone size={16} /> Call Us
+                      <Phone size={16} /> {COPY.altCtas.call}
                     </a>
                     <a
                       href={getWhatsAppUrl()}
@@ -505,7 +507,7 @@ const Order = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 border border-border bg-background hover:bg-accent text-foreground/70 px-5 py-3 rounded-full text-sm font-medium transition-colors"
                     >
-                      <MessageCircle size={16} /> WhatsApp
+                      <MessageCircle size={16} /> {COPY.altCtas.whatsapp}
                     </a>
                   </div>
                   <p className="text-center text-xs text-muted-foreground mt-4 inline-flex items-center gap-1.5 w-full justify-center">
