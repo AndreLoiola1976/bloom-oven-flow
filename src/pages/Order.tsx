@@ -243,7 +243,7 @@ const Order = () => {
                                 <button
                                   type="button"
                                   onClick={() => setQty(p.id, qty - 1)}
-                                  aria-label={`Decrease ${p.name}`}
+                                  aria-label={tenant.content.order.decreaseAriaLabel(p.name)}
                                   disabled={qty <= 0}
                                   className="w-9 h-9 rounded-full border border-border bg-background hover:border-sage/40 text-foreground flex items-center justify-center transition-colors disabled:opacity-40"
                                 >
@@ -255,7 +255,7 @@ const Order = () => {
                                 <button
                                   type="button"
                                   onClick={() => setQty(p.id, qty + 1)}
-                                  aria-label={`Increase ${p.name}`}
+                                  aria-label={tenant.content.order.increaseAriaLabel(p.name)}
                                   className="w-9 h-9 rounded-full border border-sage bg-sage text-white hover:bg-sage/90 flex items-center justify-center transition-colors"
                                 >
                                   <Plus size={16} />
