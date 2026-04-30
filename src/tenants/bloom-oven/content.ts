@@ -20,6 +20,7 @@ export const content: Content = {
     description:
       "Just say hi — we'll help you pick the perfect treat. No forms, no waiting. Just a quick chat.",
     primary: "Order Now",
+    whatsAppLabel: "WhatsApp",
   },
   orderPage: {
     backToHome: "Back to home",
@@ -28,6 +29,10 @@ export const content: Content = {
     subtitle: "Pick what you'd like and tell us how to reach you.",
     windowNote:
       "Orders accepted Friday–Sunday · Limited each week and may close once we sell out",
+    heroImageAlt: "Freshly baked gluten-free cookies from The Bloom Oven",
+    mostPopularBadge: "Most Popular",
+    signatureBoxBadge: "Signature Box",
+    subtotalLabel: "Subtotal",
     heroOverlayLead: "All cookies are",
     heroOverlayLeadEmphasis: "gluten-free",
     heroOverlayLeadSuffix: (location) =>

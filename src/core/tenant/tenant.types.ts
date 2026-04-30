@@ -62,6 +62,7 @@ export type Content = {
     titleLine2: string;
     description: string;
     primary: string;
+    whatsAppLabel: string;
   };
   orderPage: {
     backToHome: string;
@@ -69,6 +70,10 @@ export type Content = {
     title: string;
     subtitle: string;
     windowNote: string;
+    heroImageAlt: string;
+    mostPopularBadge: string;
+    signatureBoxBadge: string;
+    subtotalLabel: string;
     heroOverlayLead: string;
     heroOverlayLeadEmphasis: string;
     heroOverlayLeadSuffix: (location: string) => string;
