@@ -231,7 +231,7 @@ const Order = () => {
                 </div>
                 <div className="px-6 md:px-10 py-5 flex flex-wrap items-center justify-between gap-3 border-t border-border bg-background/40">
                   <p className="text-sm text-foreground/80">
-                    All cookies are <span className="font-semibold text-foreground">gluten-free</span>, baked fresh in small batches in Bethel/Danbury, CT.
+                    All cookies are <span className="font-semibold text-foreground">gluten-free</span>, baked fresh in small batches in Bethel, CT.
                   </p>
                   <p className="text-xs text-muted-foreground">
                     Dairy-free / sugar-free available on request
@@ -470,7 +470,7 @@ const Order = () => {
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
                       {form.fulfillment === "pickup"
-                        ? "Pickup in Bethel/Danbury area. No minimum order. Please order at least 24 hours in advance."
+                        ? "Pickup in Bethel, CT. No minimum order. We'll contact you to coordinate pickup details."
                         : `Shipping is available. Minimum $${SHIPPING_MINIMUM} in products. Shipping cost is paid by the customer.`}
                     </p>
                     {shippingBelowMinimum && (
