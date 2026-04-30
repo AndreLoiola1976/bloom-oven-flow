@@ -27,8 +27,8 @@ const PRODUCTS: Product[] = [
     id: "box-6",
     name: "6 Cookie Box",
     price: 42,
-    description: "A handcrafted mix of our signature gluten-free cookies.",
-    note: "Includes 2 Chocolate Chip, 2 Red Velvet, and 2 Pistachio.",
+    description: "Includes 2 Chocolate Chip, 2 Red Velvet, and 2 Pistachio.",
+    note: "Perfect mix of our best flavors.",
     highlight: true,
   },
   {
@@ -242,27 +242,32 @@ const Order = () => {
                     </div>
                   </div>
 
-                  <ul className="space-y-3">
+                  <ul className="space-y-4 pt-3">
                     {PRODUCTS.map((p) => {
                       const qty = quantities[p.id] || 0;
                       return (
                         <li
                           key={p.id}
-                          className={`rounded-2xl border p-4 md:p-5 transition-colors ${
+                          className={`rounded-2xl border p-4 md:p-5 transition-colors relative ${
                             p.highlight
-                              ? "border-sage/40 bg-sage/[0.04]"
+                              ? "border-2 border-sage/60 bg-sage/[0.06] shadow-md shadow-sage/10"
                               : "border-border bg-background/60"
                           }`}
                         >
+                          {p.highlight && (
+                            <span className="absolute -top-3 left-5 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-sage text-white text-[10px] font-bold uppercase tracking-wider shadow-sm shadow-sage/30">
+                              <Star size={10} className="fill-white" /> Most Popular
+                            </span>
+                          )}
                           <div className="flex items-start gap-4">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <h3 className="font-serif text-lg font-bold text-foreground">
+                                <h3 className={`font-serif font-bold text-foreground ${p.highlight ? "text-xl md:text-2xl" : "text-lg"}`}>
                                   {p.name}
                                 </h3>
                                 {p.highlight && (
                                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-sage/15 text-sage text-[10px] font-bold uppercase tracking-wide">
-                                    <Star size={10} className="fill-sage" /> Signature
+                                    Signature Box
                                   </span>
                                 )}
                               </div>
@@ -270,11 +275,11 @@ const Order = () => {
                                 {p.description}
                               </p>
                               {p.note && (
-                                <p className="text-xs text-sage/90 mt-2 font-medium">
+                                <p className="text-xs text-sage/90 mt-2 font-medium italic">
                                   {p.note}
                                 </p>
                               )}
-                              <p className="font-serif text-xl font-bold text-foreground mt-3 tabular-nums">
+                              <p className={`font-serif font-bold text-foreground mt-3 tabular-nums ${p.highlight ? "text-2xl md:text-3xl" : "text-xl"}`}>
                                 ${p.price}
                               </p>
                             </div>
@@ -321,21 +326,21 @@ const Order = () => {
 
                 {/* Order summary */}
                 <section className="rounded-2xl border border-border bg-background/60 p-5">
-                  <h3 className="text-xs font-semibold text-foreground/70 uppercase tracking-wide mb-3">
-                    Order Summary
+                  <h3 className="font-serif text-lg font-bold text-foreground mb-3">
+                    Your Order
                   </h3>
                   {hasItems ? (
                     <div className="space-y-2">
                       {lineItems.map((i) => (
                         <div
                           key={i.id}
-                          className="flex items-center justify-between text-sm"
+                          className="flex items-center justify-between text-sm gap-4"
                         >
                           <span className="text-foreground/80">
-                            {i.qty} × {i.name}
+                            {i.name} × {i.qty}
                           </span>
-                          <span className="text-foreground tabular-nums font-medium">
-                            ${i.qty * i.price}
+                          <span className="text-foreground tabular-nums font-medium whitespace-nowrap">
+                            — ${i.qty * i.price}
                           </span>
                         </div>
                       ))}
@@ -344,7 +349,7 @@ const Order = () => {
                           Subtotal
                         </span>
                         <span className="font-serif text-2xl font-bold text-foreground tabular-nums">
-                          ${subtotal}
+                          — ${subtotal}
                         </span>
                       </div>
                     </div>
@@ -429,11 +434,11 @@ const Order = () => {
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
                       {form.fulfillment === "pickup"
-                        ? "Pickup in Bethel/Danbury, CT — please order at least 24 hours in advance. Same-day pickup may be available."
-                        : `Shipping cost is paid by the customer. Minimum $${SHIPPING_MINIMUM} in products required.`}
+                        ? "Pickup in Bethel/Danbury area. No minimum order. Please order at least 24 hours in advance."
+                        : `Shipping is available. Minimum $${SHIPPING_MINIMUM} in products. Shipping cost is paid by the customer.`}
                     </p>
                     {shippingBelowMinimum && (
-                      <p className="text-xs text-toffee mt-2 font-medium">
+                      <p className="text-xs text-toffee mt-2 font-semibold">
                         Shipping requires a minimum of ${SHIPPING_MINIMUM} in products.
                       </p>
                     )}
@@ -469,23 +474,28 @@ const Order = () => {
                   </div>
                 </section>
 
-                <button
-                  type="submit"
-                  disabled={!hasItems}
-                  className="w-full inline-flex items-center justify-center gap-3 bg-sage hover:bg-sage/85 text-white px-10 py-4 rounded-full text-lg font-bold shadow-xl shadow-sage/30 hover:shadow-2xl hover:shadow-sage/40 transition-all duration-300 hover:-translate-y-0.5 ring-2 ring-sage/15 ring-offset-2 ring-offset-card disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:shadow-lg"
-                >
-                  Send Order Request
-                </button>
+                <div>
+                  <button
+                    type="submit"
+                    disabled={!hasItems || shippingBelowMinimum}
+                    className="w-full inline-flex items-center justify-center gap-3 bg-sage hover:bg-sage/85 text-white px-10 py-4 rounded-full text-lg font-bold shadow-xl shadow-sage/30 hover:shadow-2xl hover:shadow-sage/40 transition-all duration-300 hover:-translate-y-0.5 ring-2 ring-sage/15 ring-offset-2 ring-offset-card disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:shadow-lg"
+                  >
+                    Send Order Request
+                  </button>
 
-                {!hasItems && (
-                  <p className="text-center text-xs text-muted-foreground -mt-3">
-                    Add at least one product to send your request.
+                  {!hasItems && (
+                    <p className="text-center text-xs text-toffee mt-3 font-medium">
+                      Please add at least one item to your order.
+                    </p>
+                  )}
+
+                  <p className="text-center text-xs text-muted-foreground mt-3">
+                    No payments online — we confirm availability, pickup/shipping, and final details directly.
                   </p>
-                )}
-
-                <p className="text-center text-xs text-muted-foreground">
-                  We reply within 30 minutes · No payments online — we confirm availability and details directly
-                </p>
+                  <p className="text-center text-xs text-muted-foreground/90 mt-1.5">
+                    Freshly baked in small batches in Connecticut · We reply within 30 minutes
+                  </p>
+                </div>
 
                 {/* Alternative CTAs */}
                 <div className="pt-6 border-t border-border">
