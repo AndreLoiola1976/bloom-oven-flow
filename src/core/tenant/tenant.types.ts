@@ -56,6 +56,9 @@ export type Content = {
     priceSuffix: string;
     ctaPrimary: string;
     ctaSecondary: string;
+    backgroundImageAlt: string;
+    productImageAlt: (businessName: string) => string;
+    badges: readonly string[];
   };
   finalCta: {
     titleLine1: string;

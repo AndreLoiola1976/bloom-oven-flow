@@ -25,7 +25,7 @@ const HeroSection = () => {
         <div className="absolute inset-0">
           <img
             src={heroCookies}
-            alt="Freshly baked chocolate chip, red velvet, and pistachio cookies"
+            alt={hero.backgroundImageAlt}
             width={1920}
             height={1080}
             className="w-full h-full object-cover"
@@ -80,19 +80,25 @@ const HeroSection = () => {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-foreground/10 border border-border">
               <img
                 src={heroCookies}
-                alt={`${tenant.business.name} 6-Cookie Box: Chocolate Chip, Red Velvet, Pistachio`}
+                alt={hero.productImageAlt(tenant.business.name)}
                 width={1920}
                 height={1080}
                 className="w-full h-auto"
               />
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-foreground/60 to-transparent p-6">
                 <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 rounded-full bg-sage/30 text-white text-xs font-semibold backdrop-blur-sm">
-                    Allergen-Friendly
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold backdrop-blur-sm">
-                    Made Fresh Weekly
-                  </span>
+                  {hero.badges.map((badge, i) => (
+                    <span
+                      key={badge}
+                      className={
+                        i === 0
+                          ? "px-3 py-1 rounded-full bg-sage/30 text-white text-xs font-semibold backdrop-blur-sm"
+                          : "px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold backdrop-blur-sm"
+                      }
+                    >
+                      {badge}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
