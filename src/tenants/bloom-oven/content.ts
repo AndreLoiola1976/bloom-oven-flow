@@ -196,4 +196,9 @@ export const content: Content = {
     decreaseAriaLabel: (productName) => `Decrease ${productName}`,
     increaseAriaLabel: (productName) => `Increase ${productName}`,
   },
+  notFound: {
+    code: "404",
+    title: "Oops! Page not found",
+    backCta: "Return to Home",
+  },
 };

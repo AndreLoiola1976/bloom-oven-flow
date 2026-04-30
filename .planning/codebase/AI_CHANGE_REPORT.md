@@ -37,6 +37,42 @@ Running log of non-trivial migration steps. Newest entries on top. Each entry MU
 
 ---
 
+## 2026-04-30 — Refactor step: NotFound.tsx
+
+**Scope**: Move user-facing literals on the 404 page into the tenant content contract.
+
+**Files created**: none
+
+**Files modified**:
+- `src/core/tenant/tenant.types.ts`
+- `src/tenants/bloom-oven/content.ts`
+- `src/pages/NotFound.tsx`
+
+**Files deleted**: none
+
+**Hardcoded data removed**:
+- `"404"` → `tenant.content.notFound.code`
+- `"Oops! Page not found"` → `tenant.content.notFound.title`
+- `"Return to Home"` → `tenant.content.notFound.backCta`
+
+`console.error` diagnostic intentionally left as-is (developer-facing, not user copy).
+
+**New dependencies between files**:
+- `src/pages/NotFound.tsx` now depends on `@/core/tenant/tenant`.
+
+**Remaining tech debt** (per `CONCERNS.md`):
+- `index.html` metadata still hardcoded
+- `HeroSection.tsx` badges + alts still hardcoded
+- `Footer.tsx` logo-alt duplicates `header.logoAlt`
+- `content.ts` `pickupHelper` still embeds "Bethel, CT" instead of using a builder
+
+**Validation**:
+- TypeScript build: **pass** (`tsc --noEmit` exit 0)
+- Order flow tested: not impacted
+- Visual unchanged: yes (no className, layout, or DOM changes)
+
+---
+
 ## 2026-04-30 — Refactor step 1: Order.tsx + FinalCTA literal sweep
 
 **Scope**: Move residual user-facing literals from `Order.tsx` and `FinalCTA.tsx` into the tenant content contract.
