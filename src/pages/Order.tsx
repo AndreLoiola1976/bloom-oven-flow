@@ -378,6 +378,11 @@ const Order = () => {
                           ${subtotal}
                         </span>
                       </div>
+                      <div className="border-t border-border/60 pt-3 mt-3 text-sm text-muted-foreground">
+                        Fulfillment: <span className="text-foreground font-semibold">
+                          {form.fulfillment === "pickup" ? "Pickup in Bethel, CT" : "Shipping"}
+                        </span>
+                      </div>
                       {isLargeOrder && (
                         <p className="text-xs text-sage mt-3 font-medium bg-sage/5 border border-sage/20 rounded-lg px-3 py-2">
                           This is a large order — we'll confirm details with you before baking.
@@ -385,7 +390,7 @@ const Order = () => {
                       )}
                       {shippingBelowMinimum && (
                         <p className="text-xs text-toffee mt-3 font-semibold bg-toffee/5 border border-toffee/30 rounded-lg px-3 py-2">
-                          Shipping requires a minimum of ${SHIPPING_MINIMUM} in products.
+                          Shipping minimum not met. Shipping requires a minimum of ${SHIPPING_MINIMUM} in products.
                         </p>
                       )}
                     </div>
