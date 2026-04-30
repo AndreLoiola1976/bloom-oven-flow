@@ -1,5 +1,5 @@
-import { MessageCircle } from "lucide-react";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroCookies from "@/assets/hero-cookies.jpg";
 
 const AnnouncementBar = () => {
@@ -55,15 +55,13 @@ const HeroSection = () => {
               $42 <span className="text-base font-sans font-normal text-muted-foreground">/ box</span>
             </p>
 
-            <a
-              href={getWhatsAppUrl("Hi! I'd like to order the 6-Cookie Box ($42) 🍪")}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/order"
               className="inline-flex items-center gap-3 bg-sage hover:bg-sage/85 text-white px-12 py-5 rounded-full text-lg font-bold shadow-xl shadow-sage/30 hover:shadow-2xl hover:shadow-sage/40 transition-all duration-300 hover:-translate-y-1 ring-2 ring-sage/20 ring-offset-2 ring-offset-cream"
             >
-              <MessageCircle size={22} />
-              Order via WhatsApp
-            </a>
+              Order Now
+              <ArrowRight size={22} />
+            </Link>
 
             <p className="mt-4 text-sm text-muted-foreground font-light">
               We reply within 30 minutes · No apps, no accounts
