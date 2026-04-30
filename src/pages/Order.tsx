@@ -27,8 +27,8 @@ const PRODUCTS: Product[] = [
     id: "box-6",
     name: "6 Cookie Box",
     price: 42,
-    description: "A handcrafted mix of our signature gluten-free cookies.",
-    note: "Includes 2 Chocolate Chip, 2 Red Velvet, and 2 Pistachio.",
+    description: "Includes 2 Chocolate Chip, 2 Red Velvet, and 2 Pistachio.",
+    note: "Perfect mix of our best flavors.",
     highlight: true,
   },
   {
