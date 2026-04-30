@@ -7,7 +7,6 @@ import Testimonials from "@/components/Testimonials";
 import InstagramSection from "@/components/InstagramSection";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
@@ -21,7 +20,6 @@ const Index = () => {
       <InstagramSection />
       <FinalCTA />
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 };
