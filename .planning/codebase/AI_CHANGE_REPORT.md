@@ -37,6 +37,43 @@ Running log of non-trivial migration steps. Newest entries on top. Each entry MU
 
 ---
 
+## 2026-04-30 — Refactor step 1: Order.tsx + FinalCTA literal sweep
+
+**Scope**: Move residual user-facing literals from `Order.tsx` and `FinalCTA.tsx` into the tenant content contract.
+
+**Files created**: none
+
+**Files modified**:
+- `src/core/tenant/tenant.types.ts`
+- `src/tenants/bloom-oven/content.ts`
+- `src/pages/Order.tsx`
+- `src/components/FinalCTA.tsx`
+
+**Files deleted**: none
+
+**Hardcoded data removed**:
+- `Order.tsx` hero image alt `"Freshly baked gluten-free cookies from The Bloom Oven"` → `tenant.content.orderPage.heroImageAlt`
+- `Order.tsx` `"Most Popular"` badge → `tenant.content.orderPage.mostPopularBadge`
+- `Order.tsx` `"Signature Box"` pill → `tenant.content.orderPage.signatureBoxBadge`
+- `Order.tsx` `"Subtotal"` summary label → `tenant.content.orderPage.subtotalLabel`
+- `FinalCTA.tsx` `"WhatsApp"` button label → `tenant.content.finalCta.whatsAppLabel` (kept surface-local rather than reusing `orderPage.altCtas.whatsapp` to avoid cross-surface coupling)
+
+**New dependencies between files**: none (existing tenant import paths reused)
+
+**Remaining tech debt** (per `CONCERNS.md`):
+- `index.html` metadata still hardcoded
+- `NotFound.tsx` still hardcoded
+- `HeroSection.tsx` badges + alts still hardcoded
+- `Footer.tsx` logo-alt duplicates `header.logoAlt`
+- `content.ts` `pickupHelper` still embeds "Bethel, CT" instead of using a builder
+
+**Validation**:
+- TypeScript build: **pass** (`tsc --noEmit` exit 0)
+- Order flow tested: yes (logic unchanged; only string sources swapped)
+- Visual unchanged: yes (no className, layout, or DOM changes)
+
+---
+
 ## 2026-04-30 — Planning guardrails created
 
 **Scope**: Documentation only. No application code modified.
