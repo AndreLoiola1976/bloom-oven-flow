@@ -45,7 +45,7 @@ const Header = () => {
               : "bg-cream/40 backdrop-blur-sm px-3 py-1"
           }`}
         >
-          <img src={logo} alt={copy.logoAlt} className="h-12 md:h-14" />
+          <img src={logo} alt={tenant.content.logoAlt} className="h-12 md:h-14" />
         </Link>
 
         <nav className="flex items-center gap-6">

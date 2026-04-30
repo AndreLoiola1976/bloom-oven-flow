@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
           <div className="text-center md:text-left">
-            <img src={logo} alt={tenant.business.name} className="h-10 mx-auto md:mx-0 mb-3 brightness-150" />
+            <img src={logo} alt={tenant.content.logoAlt} className="h-10 mx-auto md:mx-0 mb-3 brightness-150" />
             <p className="text-sm text-background/50">
               {copy.tagline}
             </p>

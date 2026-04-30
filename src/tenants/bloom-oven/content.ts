@@ -3,6 +3,7 @@ import type { Content } from "@/core/tenant/tenant.types";
 export const content: Content = {
   announcementBar:
     "Freshly baked weekly — limited batches, order before we sell out",
+  logoAlt: "The Bloom Oven",
   hero: {
     eyebrow: "Gluten-Free · Dairy-Free · Refined Sugar-Free",
     titleLine1: "Freshly Baked Cookies.",
@@ -119,7 +120,6 @@ export const content: Content = {
     ],
   },
   header: {
-    logoAlt: "The Bloom Oven",
     homeAriaLabel: "The Bloom Oven — Home",
     navMenu: "Menu",
     navAbout: "About",

@@ -47,6 +47,7 @@ export type ThemeTokens = {
 
 export type Content = {
   announcementBar: string;
+  logoAlt: string;
   hero: {
     eyebrow: string;
     titleLine1: string;
@@ -138,7 +139,6 @@ export type Content = {
     pickupBullets: (pickup: string) => string[];
   };
   header: {
-    logoAlt: string;
     homeAriaLabel: string;
     navMenu: string;
     navAbout: string;
