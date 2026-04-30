@@ -1,6 +1,12 @@
 import { Truck, MapPin, Mail } from "lucide-react";
+import { tenant } from "@/core/tenant/tenant";
 
 const HowItWorks = () => {
+  const shippingBullets = tenant.content.ordering.shippingBullets;
+  const pickupBullets = tenant.content.ordering.pickupBullets(
+    tenant.business.pickupLocation
+  );
+
   return (
     <section className="py-20 md:py-28 bg-card">
       <div className="container mx-auto px-4 max-w-4xl">
@@ -24,18 +30,23 @@ const HowItWorks = () => {
               <h3 className="font-serif text-xl font-semibold text-foreground">Shipping</h3>
             </div>
             <ul className="space-y-2 text-muted-foreground text-sm">
-              <li className="flex items-start gap-2">
-                <span className="text-sage mt-0.5">•</span>
-                Minimum order: <strong className="text-foreground">$20</strong>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-sage mt-0.5">•</span>
-                Customer pays shipping
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-sage mt-0.5">•</span>
-                Connecticut delivery area
-              </li>
+              {shippingBullets.map((b, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-sage mt-0.5">•</span>
+                  <span>
+                    {b.startsWith("Minimum order:") ? (
+                      <>
+                        Minimum order:{" "}
+                        <strong className="text-foreground">
+                          ${tenant.business.shippingMinimum}
+                        </strong>
+                      </>
+                    ) : (
+                      b
+                    )}
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -47,18 +58,16 @@ const HowItWorks = () => {
               <h3 className="font-serif text-xl font-semibold text-foreground">Pickup</h3>
             </div>
             <ul className="space-y-2 text-muted-foreground text-sm">
-              <li className="flex items-start gap-2">
-                <span className="text-sage mt-0.5">•</span>
-                No minimum order
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-sage mt-0.5">•</span>
-                <strong className="text-foreground">Bethel, CT</strong>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-sage mt-0.5">•</span>
-                Schedule via order form or text
-              </li>
+              {pickupBullets.map((b, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-sage mt-0.5">•</span>
+                  {b === tenant.business.pickupLocation ? (
+                    <strong className="text-foreground">{b}</strong>
+                  ) : (
+                    <span>{b}</span>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -67,8 +76,11 @@ const HowItWorks = () => {
           <div className="inline-flex items-center gap-2 text-muted-foreground text-sm">
             <Mail size={16} />
             <span>Questions?</span>
-            <a href="mailto:thebloomoven@gmail.com" className="text-sage hover:underline font-medium">
-              thebloomoven@gmail.com
+            <a
+              href={`mailto:${tenant.contact.email}`}
+              className="text-sage hover:underline font-medium"
+            >
+              {tenant.contact.email}
             </a>
           </div>
         </div>
