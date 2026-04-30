@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, MessageSquare, Phone, MessageCircle, Check } from "lucide-react";
+import { ArrowLeft, MessageSquare, Phone, MessageCircle, Check, Minus, Plus } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
@@ -10,16 +10,67 @@ import heroCookies from "@/assets/hero-cookies.jpg";
 type ContactMethod = "text" | "call";
 type Fulfillment = "pickup" | "delivery";
 
+const BOX_PRICE = 42;
+const FLAVORS = ["Chocolate Chip", "Red Velvet", "Pistachio"] as const;
+type Flavor = typeof FLAVORS[number];
+
+const buildOrderSummary = (qty: number, flavors: Flavor[]) => {
+  if (qty <= 0) return "";
+  const lines = [
+    "Order:",
+    `- ${qty} x 6 Cookie Box ($${BOX_PRICE} each)`,
+    `Total: $${qty * BOX_PRICE}`,
+  ];
+  if (flavors.length > 0) {
+    lines.push(`Flavors: ${flavors.join(", ")}`);
+  }
+  return lines.join("\n");
+};
+
 const Order = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [flavors, setFlavors] = useState<Flavor[]>([]);
+  const [detailsTouched, setDetailsTouched] = useState(false);
+  const lastAutoRef = useRef<string>("");
   const [form, setForm] = useState({
     name: "",
     phone: "",
     contact: "text" as ContactMethod,
     fulfillment: "pickup" as Fulfillment,
-    details: "",
+    details: buildOrderSummary(1, []),
     when: "",
   });
+
+  // Initialize the auto-fill snapshot so manual edits are detected correctly
+  useEffect(() => {
+    lastAutoRef.current = buildOrderSummary(1, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Keep Order Details in sync with quantity/flavors unless user manually edited
+  useEffect(() => {
+    const next = buildOrderSummary(quantity, flavors);
+    if (detailsTouched) {
+      lastAutoRef.current = next;
+      return;
+    }
+    setForm((f) => (f.details === next ? f : { ...f, details: next }));
+    lastAutoRef.current = next;
+  }, [quantity, flavors, detailsTouched]);
+
+  const toggleFlavor = (flavor: Flavor) => {
+    setFlavors((prev) =>
+      prev.includes(flavor) ? prev.filter((f) => f !== flavor) : [...prev, flavor]
+    );
+  };
+
+  const handleDetailsChange = (value: string) => {
+    setForm((f) => ({ ...f, details: value }));
+    if (value !== lastAutoRef.current) {
+      setDetailsTouched(true);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
